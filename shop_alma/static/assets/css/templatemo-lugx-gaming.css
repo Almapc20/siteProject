@@ -374,7 +374,7 @@ Header Style
 .header-area {
   position: absolute;
   background-color: transparent;
-  top: 40px;
+  top: 10px;
   left: 0;
   right: 0;
   z-index: 100;
