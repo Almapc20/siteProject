@@ -231,6 +231,7 @@ iframe {
   display: -moz-box;
   display: -ms-flexbox;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
@@ -238,6 +239,7 @@ iframe {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  border-radius: 125px;
 }
 
 .wrap-login100 {

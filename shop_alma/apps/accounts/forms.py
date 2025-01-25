@@ -16,8 +16,6 @@ class UserCretionForm(forms.ModelForm):
             'name',
             'family',
             'gender',
-            'birth',
-            'relation',
         ]
         def clean_password(self):
             pass1= self.cleaned_data['password1']
@@ -45,8 +43,6 @@ class UserChangeForm(forms.ModelForm):
             'name',
             'family',
             'gender',
-            'birth',
-            'relation',
             'is_active',
             'is_admin',
         ]

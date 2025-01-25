@@ -7,18 +7,18 @@ class CustomUserAdmin(UserAdmin):
     form= UserChangeForm
     add_form= UserCretionForm
     
-    list_display=('mobile_number', 'email', 'name', 'family', 'gender','birth', 'relation', 'is_admin', 'is_active')    
+    list_display=('mobile_number', 'email', 'name', 'family', 'gender', 'is_admin', 'is_active')    
 
     list_filter=('is_admin', 'is_active')
     
     fieldsets=(
         (None, {'fields':('mobile_number', 'password')}),
-        ('personal info',{ 'fields': ('email', 'name', 'family', 'gender','birth','relation')}),
+        ('personal info',{ 'fields': ('email', 'name', 'family', 'gender')}),
         ('permissions', {'fields':('is_admin', 'is_active','is_superuser','groups','user_permissions')})
     )
     
     add_fieldsets=(
-         (None, {'fields':('mobile_number','email', 'name', 'family', 'gender', 'birth', 'relation', 'password1', 'password2')}),
+         (None, {'fields':('mobile_number','email', 'name', 'family', 'gender', 'password1', 'password2')}),
     )
     
     search_fields=('mobile_number',)

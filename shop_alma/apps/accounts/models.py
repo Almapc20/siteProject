@@ -4,7 +4,7 @@ from django.utils import timezone
 
 #-----------------------------------------------------------------------------------------
 class CustomUserManager(BaseUserManager):
-        def create_user(self, mobile_number, email="", name="", family="", active_code=None, gender=None, birth=None, relation=None, password=None):
+        def create_user(self, mobile_number, email="", name="", family="", active_code=None, gender=None, password=None):
             if not mobile_number:
                 raise ValueError("شماره موبایل باید وارد شود")
             user= self.model(
@@ -14,8 +14,6 @@ class CustomUserManager(BaseUserManager):
                 family= family,
                 active_code= active_code,
                 gender= gender,
-                birth= birth,
-                relation= relation,
             )
             user.set_password(password)
             user.save(using= self._db)
@@ -46,8 +44,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         family= models.CharField(max_length=50,blank=True)
         GENDER_CHOICES=(('True','مرد'),('False','زن'))
         gender=models.CharField(max_length=50,blank=True, choices=GENDER_CHOICES, default='True', null=True)
-        birth= models.DateField(max_length=20, blank=True, null=True)
-        relation= models.CharField(max_length=50, blank=True, null=True)
         register= models.DateField(default= timezone.now)
         is_active= models.BooleanField(default=False)
         active_code= models.CharField(max_length=200,blank=True, null=True)	
@@ -60,8 +56,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
             'email',
             'name',
             'family',
-            'birth',
-            'relation',
         ]
         
         objects= CustomUserManager()
