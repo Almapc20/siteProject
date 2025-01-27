@@ -93,13 +93,6 @@ class LoginUserView(View):
     
     def post(self,request,*args, **kwargs):
         form= LoginUserForm(request.POST)
-        print("******************************************************************")
-        print("******************************************************************")
-        print(form)
-        print("******************************************************************")
-        print("******************************************************************")
-        
-        
         if form.is_valid():
             data= form.cleaned_data
             user= authenticate(username= data['mobile_number'], password= data['password'])

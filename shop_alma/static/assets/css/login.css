@@ -181,6 +181,17 @@ iframe {
   border: none !important;
 }
 
+.input-reg {
+  outline: none !important;
+  border: none;
+  background: transparent;
+  font-size: 1.5rem !important;
+}
+
+.input-reg:hover {
+  cursor: pointer;
+}
+
 /*//////////////////////////////////////////////////////////////////
 [ Utility ]*/
 .txt1 {

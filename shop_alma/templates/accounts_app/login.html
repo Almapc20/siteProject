@@ -10,14 +10,14 @@
 {% include "partials/banner/banner_box.html" with type=2 %}
 <div class="limiter">
 	<div class="container-login100" style="background-image: url('{{media_url}}/images/login/bg-01.jpg');">
-		{% include "partials/message.html" %}
 		<div>
 			<h2 class="header-text1-color">خوش آمدید</h2>
 		</div>
 		<div>
 			<h5 class="header-text1-color">برای ورود نام کاربری و کلمه عبور خود را وارد کنید</h5>
 		</div>
-		<br><br>
+		<br>
+		{% include "partials/message.html" %}
 		<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 			<form action="" method="post">
 				{% csrf_token %}

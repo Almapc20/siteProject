@@ -7,49 +7,52 @@
     
 
 {% block content %}
+{% include "partials/banner/banner_box.html" with type=2 %}
+<div class="limiter">
+	<div class="container-login100" style="background-image: url('{{media_url}}/images/login/bg-01.jpg');">
+		<div>
+			<h2 class="header-text1-color">خوش آمدید</h2>
+		</div>
+		<div>
+			<h5 class="header-text1-color">برای ثبت نام لطفا کد کاربری و کلمه عبور خود را انتخاب و ارسال کنید</h5>
+		</div>
+		<br>
+		{% include "partials/message.html" %}
+		<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+			<form action="" method="post">
+				{% csrf_token %}
+                
+                <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+					<span class="label-input100"> شماره موبایل </span>
+					{{ form.mobile_number }}
+					<span class="focus-input100" data-symbol="&#xf206;"></span>
+				</div>
+				
+                <div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
+					<span class="label-input100">کلمه عبور </span>
+					{{ form.password1}}
+					<span class="focus-input100" data-symbol="&#xf190;"></span>
+				</div>
 
-    <div class="site__body">
-        <div class="page-header">
-            <div class="page-header__container container">
-                <div class="page-header__breadcrumb">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">خانه</a>
-                                /
-                            </li>
-                            <li class="breadcrumb-item">
-                                <a href="">حساب کاربری</a>
-                                /
-                            </li>
-                            <li class="active" aria-current="page"> ایجاد حساب کاربری</li>
-                        </ol>
-                    </nav>
-                </div>
-                <div class="page-header__title d-flex justify-content-center">
-                    <h1>ایجاد حساب کاربری جدید</h1></div>
-            </div>
-        </div>
-        <div class="block">
-            <div class="container">
-                <div class="row d-flex justify-content-center">
-                    <div class="col-md-6 d-flex mt-4 mt-md-0">
-                        <div class="card flex-grow-1 mb-0">
-                            <div class="card-body">
-                                <h3 class="card-title">ثبت نام</h3>
-                                                                        
-                                <form action="" method="post">
-                                        {% csrf_token %}
-                                        {{ form.as_p }}
-                                        <button type="submit" class="btn btn-primary mt-4">ثبت نام</button>
-                                        
-                                </form>                           
-                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> 
-    
-<br><br><br><br>    
+				<div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
+					<span class="label-input100"> تکرار کلمه عبور </span>
+					{{ form.password2}}
+					<span class="focus-input100" data-symbol="&#xf190;"></span>
+				</div>
+                <div class="container-login100-form-btn">
+					<div class="wrap-login100-form-btn">
+						<div class="login100-form-bgbtn"></div>
+						
+							<input type="submit" value=" ثبت نام  " class="login100-form-btn input-reg">      
+						
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+<div id="dropDownSelect1"></div>
+
 {% endblock content %}
