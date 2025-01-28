@@ -1,0 +1,51 @@
+ {% load static %}
+{% if type == 1 %}
+        <div class="col-lg-2 col-md-6 col-sm-6">
+          <div class="item">
+            <div class="thumb">
+                <a href="{{product.get_absolute_url}}"><img src="{{media_url}}{{product.image_name}}" alt=""></a>
+                <span class="price">{{product.price}}</span>
+            </div>
+            <div class="down-content">
+                {% comment %} <span class="category">Adventure</span> {% endcomment %}
+                <h4>{{product.product_name}}</h4>
+                <a href="{{product.get_absolute_url}}"><i class="fa fa-shopping-bag">افزودن به سبد خرید</i></a>
+            </div>
+          </div>
+        </div>
+{% elif type == 2 %}
+        <div class="col-lg-3 col-md-6 d-flex">
+          <div class="item">
+            <div class="thumb">
+              <a href="{{product.get_absolute_url}}"><img src="{{media_url}}{{product.image_name}}" alt=""></a>
+              <span class="price">{{product.price}}</span>
+            </div>
+            <div class="down-content">
+              <span class="category">{{product.product_name}}</span>
+              <a href="{{product.get_absolute_url}}"><i class="fa fa-shopping-bag">افزودن به سبد خرید</i></a>
+            </div>
+          </div>
+        </div>
+{% comment %} {% elif type == 3 %}    
+
+                        <div class="col-md-6">
+                            <img src="{{media_url}}{{product.image_name}}" style="height: 35rem;width: 
+                            35rem;" alt="عکس محصول" class="img-fluid rounded">
+                        </div>
+                    <!-- Product Details -->
+                        <div class="col-md-6">
+                            <h2>{{product.product_name}}</h2>
+                            <p class="text-muted">{{product.summery_description}}</p>
+                            <h3 class="text-danger"> {{product.price|intcomma}} </h3>
+                            <button class="btn btn-primary mt-3">افزودن به سبد خرید</button>
+                        </div> {% endcomment %}
+{% endif %}
+
+        
+
+
+
+
+
+
+

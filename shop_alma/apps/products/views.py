@@ -5,10 +5,14 @@ from django.views import View
 from django.http import JsonResponse
 
 from django.core.paginator import Paginator
+#---------------------------------------------------------------------------------------------------------------
+def root_group():
+    return ProductGroup.objects.filter(Q(is_active=True)& Q(group_parent=None))
+
 # -----------------------------ارزانترین محصولات که بر اساس قیمت مرتب شده اند----------------------------------
 def get_cheapest_products(request, *args, **kwargs):
-    products= Product.objects.filter(is_active=True).order_by('price')
-    product_groups= ProductGroup.objects.filter(Q(is_active=True) & Q(group_parent= None))
+    products= Product.objects.filter(is_active=True).order_by('price')[:6]
+    product_groups=root_group()
     context={
         'products' : products,
         'product_groups': product_groups,
@@ -17,25 +21,21 @@ def get_cheapest_products(request, *args, **kwargs):
 
 # -----------------------------جدیدترین محصولات به روز شده ----------------------------------
 def get_last_products(request, *args, **kwargs):
-    products= Product.objects.filter(is_active=True).order_by('-published_date')[:5]
-    product_groups= ProductGroup.objects.filter(Q(is_active=True) & Q(group_parent= None))
+    products= Product.objects.filter(is_active=True).order_by('-published_date')[:4]
+    product_groups=root_group()
     context={
         'products' : products,
         'product_groups': product_groups,
     }
     return render(request, "products_app/partials/last_products.html", context)
 
-
 #========================دسته های محبوب =======================================
-def get_popular_product_group(request, *args, **kwargs):
-    # product_groups= ProductGroup.objects.filter(Q(is_active=True)).annotate(count= Count('product_of_groups')).order_by('-count')[:6]
-    product_groups= ProductGroup.objects.filter(Q(is_active=True))\
-                    .annotate(count= Count('product_of_groups'))\
-                    .order_by('-count')[:6]
-                    
-    context= {
-        "product_groups": product_groups
+def get_popular_product_groups(request,*args,**kwargs):
+    product_groups=ProductGroup.objects.filter(Q(is_active=True)).annotate(count=Count('products_of_groups')).order_by('-count')[:6]
+    context={
+        'product_groups':product_groups
     }
+   
     return render(request, "products_app/partials/popular_product_group.html", context)
 
 #========================جزئیات محصول =======================================

@@ -148,3 +148,34 @@
 
 /* ================================================================================================ */
 /* ---------------------- style for login --------------------------------------------------------- */
+
+
+
+
+
+
+/* جزیئات محصول */
+.product-detail-page {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+}
+
+.product-images,
+.product-info {
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.product-header {
+    text-align: center;
+}
+
+.product-info ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.add-to-cart {
+    margin-top: 20px;
+}

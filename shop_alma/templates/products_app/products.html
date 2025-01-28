@@ -9,7 +9,7 @@
 
 <!-- site__body -->
 <div class="site__body">
-    <div class="page-header">
+    {% comment %} <div class="page-header">
         <div class="page-header__container container">
             <div class="page-header__breadcrumb">
                 <nav aria-label="breadcrumb">
@@ -29,6 +29,7 @@
                 <h2>محصولات گروه <span> {{current_group.group_title}} <span> </h2></div>
         </div>
     </div>
+     {% endcomment %}
     <div class="container">
         <div class="shop-layout shop-layout--sidebar--start">
             <div class="shop-layout__sidebar">
@@ -63,7 +64,7 @@
                                                         <li class="filter-categories__item filter-categories__item--current"><a href="">ابزار برقی</a>
                                                             <div class="filter-categories__counter">21</div>
                                                         </li>
-                                                        <li class="filter-categories__item filter-categories__item--child"><a href="">دریل و همزن</a>
+                                                        {% comment %} <li class="filter-categories__item filter-categories__item--child"><a href="">دریل و همزن</a>
                                                             <div class="filter-categories__counter">15</div>
                                                         </li>
                                                         <li class="filter-categories__item filter-categories__item--child"><a href="">پیچ گوشتی برقی</a>
@@ -95,7 +96,7 @@
                                                         </li>
                                                         <li class="filter-categories__item filter-categories__item--child"><a href="">تفنگ چسب</a>
                                                             <div class="filter-categories__counter">7</div>
-                                                        </li>
+                                                        </li> {% endcomment %}
                                                     </ul>
                                                 </div>
                                             </div>
