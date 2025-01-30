@@ -179,3 +179,12 @@
 .add-to-cart {
     margin-top: 20px;
 }
+
+.a-icon{
+    margin: 5px;
+}
+
+.col-size{
+    flex: 0 0 auto;
+    width: 24.667%;
+}

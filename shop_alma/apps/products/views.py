@@ -11,7 +11,7 @@ def root_group():
 
 # -----------------------------ارزانترین محصولات که بر اساس قیمت مرتب شده اند----------------------------------
 def get_cheapest_products(request, *args, **kwargs):
-    products= Product.objects.filter(is_active=True).order_by('price')[:6]
+    products= Product.objects.filter(is_active=True).order_by('price')[:4]
     product_groups=root_group()
     context={
         'products' : products,
@@ -44,3 +44,11 @@ class ProductDetailView(View):
         product= get_object_or_404(Product, slug=slug)
         if product.is_active:
             return render(request, "products_app/product_detail.html", {'product':product})
+
+# ======================محصولات مرتبط =========================================================
+def get_related_products(request,*args,**kwargs):
+    current_product=get_object_or_404(Product,slug=kwargs['slug'])
+    related_products=[]
+    for group in current_product.product_group.all():
+        related_products.extend(Product.objects.filter(Q(is_active=True) & Q(product_group=group) & ~Q(id=current_product.id)))
+    return render(request,'products_app/partials/related_products.html',{'related_products':related_products})
