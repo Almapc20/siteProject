@@ -198,7 +198,7 @@ body {
 }
 
 .section {
-  margin-top: 120px;
+  margin-top: 20px;
 }
 
 .section-heading {
@@ -241,6 +241,26 @@ body {
 }
 
 .main-button a:hover {
+  background-color: #0071f8;
+  color: #fff;
+}
+
+.main-button2 a {
+  display: inline-block;
+  background-color: #ee626b;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  height: 50px;
+  line-height: 50px;
+  padding: 0px 30px;
+  border-radius: 25px;
+  transition: all .3s;
+  align-items: center;
+}
+
+.main-button2 a:hover {
   background-color: #0071f8;
   color: #fff;
 }
@@ -1004,7 +1024,7 @@ Most Played Style
 
 .most-played {
   background-color: #f7f7f7;
-  padding: 100px 0px;
+  padding: 50px 0px;
   border-radius: 150px;
 }
 

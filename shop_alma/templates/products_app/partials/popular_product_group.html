@@ -1,6 +1,3 @@
-  <div class="section most-played">
-    <div class="container">
-      <div class="row">
         <div class="col-lg-6">
           <div class="section-heading">
             <h6>پرطرفدار</h6>
@@ -8,7 +5,7 @@
           </div>
         </div>
         {% comment %} <div class="col-lg-6">
-          <div class="main-button">
+          <div class="main-button2">
             <a href="shop.html">مشاهده همه</a>
           </div>
         </div> {% endcomment %}
@@ -17,7 +14,7 @@
             <br>
         </div>
         {% for group in product_groups %}
-            <div class="col-lg-6 col-md-6">
+            <div class="col-lg-4 col-md-6">
           <div class="item">
             <div class="thumb">
               <a href="product-details.html"><img src="{{media_url}}{{group.image_name}}"  style="width: 80px;" alt=""></a>
@@ -25,13 +22,9 @@
             </div>
             <div class="down-content">
               <h4>{{group.group_title}}</h4>
-              <a href="product-details.html"><i class="fa fa-shopping-bag"><span class="a-icon"> افزودن به سبد خرید </span></i></a>
+              <a href="product-details.html"><i class="fa fa-shopping-bag"><span class="a-icon"> مشاهده محصولات </span></i></a>
             </div>
           </div>
         </div>
         
         {% endfor %}
-
-      </div>
-    </div>
-  </div>
