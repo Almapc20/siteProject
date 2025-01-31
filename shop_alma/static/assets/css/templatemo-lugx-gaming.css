@@ -226,7 +226,7 @@ body {
 }
 
 .main-button a {
-  display: inline-block;
+  display: flex;
   background-color: #ee626b;
   text-transform: uppercase;
   color: #fff;
@@ -237,6 +237,7 @@ body {
   padding: 0px 30px;
   border-radius: 25px;
   transition: all .3s;
+  align-items: center;
 }
 
 .main-button a:hover {
@@ -747,7 +748,7 @@ Banner Style
   background-position: center bottom;
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 225px 0px;
+  padding: 50px 0px 150px 0px;
 }
 
 .main-banner .caption h6 {

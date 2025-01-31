@@ -1,27 +1,133 @@
- {% comment %} <header class="header-area header-sticky" >
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
-                        <img src="{{media_url}}/images/logo.png" alt="" style="width: 158px ">
-                    </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                      <li><a href="{% url 'accounts:login' %}">ورود</a></li>
-                      <li><a href="contact.html" class="active">صفحه اصلی</a></li>
-                      <li><a href="product-details.html">فروشگاه</a></li>
-                      <li><a href="shop.html">درباره ما</a></li>
-                      <li><a href="index.html" >ارتباط با ما</a></li>
-                    </ul>
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Menu End ***** -->
-                </nav>
+<nav>
+  <div class="wrapper">
+    <ul class="nav-links">
+      <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+      <li><a href="#"> صفحه اصلی </a></li>
+      <li><a href="#"> فروشگاه </a></li>
+      <li>
+        <a href="#" class="desktop-item"> دسته بندی کالاها </a>
+        <input type="checkbox" id="showMega">
+        <label for="showMega" class="mobile-item"> دسته بندی کالاها </label>
+        <div class="mega-box">
+          <div class="content">
+            <div class="row">
+              <img src="https://fadzrinmadu.github.io/hosted-assets/responsive-mega-menu-and-dropdown-menu-using-only-html-and-css/img.jpg" alt="">
             </div>
+            <div class="row">
+              <header> طراحی سایت </header>
+              <ul class="mega-links">
+                <li><a href="#"> سایت فروشگاهی </a></li>
+                <li><a href="#"> سئو </a></li>
+                <li><a href="#"> پایتون </a></li>
+              </ul>
+            </div>
+            <div class="row">
+              <header> لپ تاپ </header>
+              <ul class="mega-links">
+                <li><a href="#"> لپ تاپ </a></li>
+                <li><a href="#"> قطعات </a></li>
+                <li><a href="#"> لوازم جانبی </a></li>
+              </ul>
+            </div>
+            <div class="row">
+              <header> تعمیرات </header>
+              <ul class="mega-links">
+                <li><a href="#"> مادربورد </a></li>
+                <li><a href="#"> پاور </a></li>
+                <li><a href="#"> گرافیک </a></li>
+                <li><a href="#"> مانیتور </a></li>
+              </ul>
+            </div>
+          </div>
         </div>
-    </div>
-  </header> {% endcomment %}
+      </li>
+      <li>
+        <a href="#" class="desktop-item"> مقالات </a>
+        <input type="checkbox" id="showDrop">
+        <label for="showDrop" class="mobile-item"> مقالات </label>
+        <ul class="drop-menu">
+          <li><a href="#"> برنامه نویسی </a></li>
+          <li><a href="#"> سخت افزار </a></li>
+          <li><a href="#"> قطعات </a></li>
+          <li><a href="#"> تعمیرات </a></li>
+        </ul>
+      </li>
+      <li><a href="#"> درباره ما </a></li>
+      <li><a href="#"> ارتباط با ما </a></li>
+    </ul>
+
+
+    <div class="wrapper">
+      <ul class="nav-links">
+        <li class="main-button a">
+          <a class="desktop-item" href=""> حساب کاربری</a>
+          <input type="checkbox" id="showDrop">
+          <label for="showDrop" class="mobile-item"> حساب کاربری</label>
+          <ul class="drop-menu">
+            {% if user.is_authenticated %}
+              <li><a href='{% url "accounts:userpanel" %}'> پنل کاربری </a></li>
+              <li><a href='{% url "accounts:logout" %}'> خروج </a></li>
+            {% else %}
+
+            <li><a href="{% url 'accounts:login' %}">ورود</a></li>
+            <li><a href="{% url 'accounts:register' %}">ثبت نام</a></li>
+            {% endif %}
+          </ul>
+        </li>
+      </ul>
+        <!--***** Logo Start ***** -->
+        <a href="index.html" class="logo">
+          <img src="{{media_url}}/images/logo.png" alt="" style="width: 158px ">
+      </a>
+  <!-- ***** Logo End ***** -->
+
+    <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+  </div>
+</nav>
+
+
+<!-- partial -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ***** Menu Start ***** -->
+ <!-- <ul class="nav">
+   <li><a href="{% url 'accounts:login' %}">ورود</a></li>
+   <li><a href="contact.html" class="active">صفحه اصلی</a></li>
+   <li><a href="product-details.html">فروشگاه</a></li>
+   <li><a href="shop.html">درباره ما</a></li>
+   <li><a href="index.html" >ارتباط با ما</a></li>
+ </ul>
+ <a class='menu-trigger'>
+     <span>Menu</span>
+ </a> -->
+ <!-- ***** Menu End ***** -->
