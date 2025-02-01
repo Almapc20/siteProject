@@ -1,0 +1,21 @@
+
+<ul class="list-unstyled">
+    {% for group in product_groups %}
+    <li class="d-flex align-items-center mb-3">
+        <!-- Arrow Icon -->
+        <svg class="filter-categories__arrow me-2" width="6px" height="9px">
+            <use xlink:href="images/sprite.svg#arrow-rounded-left-6x9"></use>
+        </svg>
+
+        <!-- Group Title -->
+        <a href="{% url 'products:products_of_group' slug=group.slug %}" class="text-decoration-none text-dark">
+            {{ group.group_title }}
+        </a>
+
+        <!-- Product Counter -->
+        <span class="badge bg-secondary ms-2">
+            {{ group.products_of_groups.all|length }}
+        </span>
+    </li>
+    {% endfor %}
+</ul>

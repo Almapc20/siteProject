@@ -83,11 +83,24 @@ class Product(models.Model):
         verbose_name_plural= 'کالا ها'
     
 # #---------------------------------------------------------------------------------
+class FeatureValue(models.Model):
+    value_title = models.CharField(max_length=100,verbose_name='عنوان مقدار')
+    feature = models.ForeignKey(Feature,on_delete=models.CASCADE,blank=True,null=True,verbose_name='ویژگی',related_name='feature_values')
+    
+    def __str__(self):
+        return f"{self.id} {self.value_title}"
+    
+    class Meta:
+        verbose_name = 'مقدار ویژگی'
+        verbose_name_plural = 'مقدار ویژگی ها'
+            
+
+#------------------------------------------------------------------------------------------------------------------------------
 class ProductFeature(models.Model):
     product= models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name= 'کالا', related_name='product_features')
     feature= models.ForeignKey(Feature, on_delete=models.CASCADE, verbose_name= 'ویژگی')
     value= models.CharField(max_length=100, verbose_name= 'مقدار ویژگی کالا')
-    
+    filter_value = models.ForeignKey(FeatureValue,null=True,blank=True,on_delete=models.CASCADE,verbose_name='مقدار ویژگی برای فیلتر')        
     def __str__(self):
         return f"{self.product} - {self.feature} : {self.value}"
     

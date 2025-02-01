@@ -198,7 +198,7 @@ body {
 }
 
 .section {
-  margin-top: 120px;
+  margin-top: 40px;
 }
 
 .section-heading {
@@ -1003,7 +1003,7 @@ Most Played Style
 
 .most-played {
   background-color: #f7f7f7;
-  padding: 100px 0px;
+  padding: 30px 0px;
   border-radius: 150px;
 }
 
@@ -1380,8 +1380,8 @@ Shop Page Style
   background-color: #ee626b;
   color: #fff;
   border-radius: 50%;
-  right: 25px;
-  bottom: 25px;
+  left: 10px;
+  bottom: 24px;
   transition: all .3s;
 }
 
