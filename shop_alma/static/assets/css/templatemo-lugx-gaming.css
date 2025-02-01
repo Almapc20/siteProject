@@ -198,7 +198,7 @@ body {
 }
 
 .section {
-  margin-top: 40px;
+  margin-top: 120px;
 }
 
 .section-heading {
@@ -226,6 +226,26 @@ body {
 }
 
 .main-button a {
+  display: flex;
+  background-color: #ee626b;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  height: 50px;
+  line-height: 50px;
+  padding: 0px 30px;
+  border-radius: 25px;
+  transition: all .3s;
+  align-items: center;
+}
+
+.main-button a:hover {
+  background-color: #0071f8;
+  color: #fff;
+}
+
+.main-button2 a {
   display: inline-block;
   background-color: #ee626b;
   text-transform: uppercase;
@@ -237,9 +257,10 @@ body {
   padding: 0px 30px;
   border-radius: 25px;
   transition: all .3s;
+  align-items: center;
 }
 
-.main-button a:hover {
+.main-button2 a:hover {
   background-color: #0071f8;
   color: #fff;
 }
@@ -747,7 +768,7 @@ Banner Style
   background-position: center bottom;
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 225px 0px;
+  padding: 50px 0px 150px 0px;
 }
 
 .main-banner .caption h6 {
@@ -1003,7 +1024,7 @@ Most Played Style
 
 .most-played {
   background-color: #f7f7f7;
-  padding: 30px 0px;
+  padding: 100px 0px;
   border-radius: 150px;
 }
 
