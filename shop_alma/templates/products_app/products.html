@@ -8,7 +8,8 @@
     <div class="row">
         <!-- Sidebar Filters -->
         <div class="col-md-3">
-            <!-- دسته‌بندی محصولات -->
+           <form action="">
+             <!-- دسته‌بندی محصولات -->
             <div class="card mb-3">
                 <div class="card-header">
                     <h5 class="mb-0">دسته‌بندی محصولات</h5>
@@ -46,12 +47,7 @@
                 <div id="brandAccordion" class="collapse show">
                     <div class="card-body">
                         <ul class="list-unstyled">
-                            <li><input type="checkbox"> اپل </li>
-                            <li><input type="checkbox"> دل </li>
-                            <li><input type="checkbox"> ایسوس </li>
-                            <li><input type="checkbox"> ایسر </li>
-                            <li><input type="checkbox"> لنوو </li>
-                            <li><input type="checkbox"> هدفون </li>
+                            {% comment %} {% render_partial "products:brands_partial" slug=group_slug %} {% endcomment %}
                         </ul>
                     </div>
                 </div>
@@ -66,13 +62,18 @@
                 </div>
                 <div id="featuresAccordion" class="collapse show">
                     <div class="card-body">
-                        {% comment %} {% render_partial "products:features_for_filter" %} {% endcomment %}
+                        {% comment %} {% render_partial "products:features_for_filter" slug=group_slug %} {% endcomment %}
+                        
                     </div>
                 </div>
-                <button class="btn">فیلتر</button>
+
+                 {% render_partial "products:brands_partial" slug=group_slug %}
+                {% render_partial "products:features_for_filter" slug=group_slug %}
+                <button class="btn btn-primary">فیلتر</button>
             </div>
         </div>
 
+           </form>
         <!-- بخش نمایش محصولات -->
         <div class="col-md-9">
             <div class="page-header__title mb-4">

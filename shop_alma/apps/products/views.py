@@ -72,12 +72,12 @@ def get_product_groups(request):
 def get_brands(request,*args,**kwargs):
     product_group = get_object_or_404(ProductGroup, slug=kwargs['slug'])
     brand_list_id=product_group.products_of_groups.filter(is_active=True).values('brand_id')
-    brands=Brand.objects.filter(pk__in=brand_list_id)\
-        .annotate(count=Count('products_of_brands'))\
+    brand=Brand.objects.filter(pk__in=brand_list_id)\
+        .annotate(count=Count('brands'))\
         .filter(~Q(count=0))\
         .order_by('-count')
     
-    return render(request,'products_app/partials/brands.html',{'brands':brands})
+    return render(request,'products_app/partials/brands.html',{'brand':brand, 'group_slug': kwargs['slug']})
 # #--لیست دیگر ویزگی ها بر حسب ویزگی های کالاهای درون گروه---------------------------------------------------------------------------------------------------------------
 
 def get_features_for_filter(request,*args,**kwargs):
@@ -99,7 +99,59 @@ class ProductByGroupView(View):
        
         #اگر خواستی روی یه مجموعه ای یسری تابع اعمال کنی از aggregate استفاده میکنیم
         res_aggre=products.aggregate(min=Min('price'),max=Max('price'))
+         
         
+        #price filter
+        filter=ProductFilter(request.GET,queryset=products)
+        products=filter.qs 
+        
+        
+        #queryset=      لیستی که قراره فیلتر روی اون اعمال بشه
+        
+        #brand filter
+        brands_filter=request.GET.getlist('brand')
+        if brands_filter:
+            products=products.filter(brand__id__in=brands_filter )
+               
+            
+        #feature filter
+        features_filter=request.GET.getlist('feature')
+        if features_filter:
+            products=products.filter(product_feature__filter_value__id__in=features_filter ).distinct()
+            
+        #distinct       حذف تکراری ها 
+            
+    
+            
+        group_slug=slug 
+        product_per_page=10                         #تعداد کالاها در هر صفحه
+        paginator=Paginator(products, product_per_page)         
+        page_number=request.GET.get('page')                   #بدست اوردن شماره صفحه جاری
+        page_obj=paginator.get_page(page_number)              #لیست کالا ها بعد از صفحه بندی برای نمایش در صحفه جاری
+        product_count=products.count();                       #تعداد کل کالاهای موجود در این گروه
+        
+        
+        #لیست اعداد برای ساخت منو باز شونده برای تعیین تعداد کالای هر صففحه توسط کاربر
+        show_count_product=[]
+        i=product_per_page
+        while i<product_count:
+            show_count_product.append(i)
+            i*=2
+        show_count_product.append(i)
+
+
+        context={
+            'products':products,
+            'current_group':current_group,
+            'res_aggre':res_aggre,
+            'group_slug':group_slug,
+            'page_obj':page_obj,
+            'product_count':product_count,
+            'show_count_product':show_count_product,
+             'filter':filter,
+            
+        }            
+    
         
  
 

@@ -52,6 +52,9 @@ INSTALLED_APPS = [
     #===========site design =====================
     'django_render_partial', # run view in html templates
     'django.contrib.humanize' , # humanize
+    
+    #========================django-filter===================
+    'django_filters',
 ]
 
 MIDDLEWARE = [
