@@ -1,34 +1,26 @@
-        <div class="col-lg-6">
-          <div class="section-heading">
-            <h6>پرطرفدار</h6>
-            <h2> محبوب ترین ها </h2>
-          </div>
+<div class="block block--highlighted block-categories block-categories--layout--compact">
+    <div class="container">
+        <div class="block-header">
+            <h3 class="block-header__title">دسته های محبوب</h3>
+            <div class="block-header__divider"></div>
         </div>
-        {% comment %} <div class="col-lg-6">
-          <div class="main-button2">
-            <a href="shop.html">مشاهده همه</a>
-          </div>
-        </div> {% endcomment %}
-
-        <div>
-            <br>
+        <div class="block-categories__list">
+            {% for group in product_groups %}
+            <div class="block-categories__item category-card category-card--layout--compact">
+                <div class="category-card__body">
+                    <div class="category-card__image">
+                        <a href="{% url "products:products_of_group" slug=group.slug %}">
+                            <img src="{{media_url}}{{group.image_name}}" alt="">
+                        </a>
+                    </div>
+                    <div class="category-card__content">
+                        <div class="category-card__name"><a href="{% url "products:products_of_group" slug=group.slug %}">{{group.group_title}}</a></div>
+                        <div class="category-card__products">{{group.product_of_groups.all|length}} محصول</div>
+                    </div>
+                </div>
+            </div>          
+            {% endfor %}
+            <a href="{% url "products:product_groups" %}">همه</a>
         </div>
-        {% for group in product_groups %}
-            <div class="col-lg-6 col-md-6">
-          <div class="item">
-            <div class="thumb">
-              <a href="{% url 'products:products_of_group' slug=group.slug %}"><img src="{{media_url}}{{group.image_name}}" style="width: 80px;" alt=""></a>
-              <span class="price">{{group.products_of_groups.all|length}} محصول </span>
-            </div>
-            <div class="down-content">
-              <h4>{{group.group_title}}</h4>
-              <a href="product-details.html"><i class="fa fa-shopping-bag"><span class="a-icon"> مشاهده محصولات </span></i></a>
-            </div>
-          </div>
-        </div>
-        
-        {% endfor %}
-        <a href="{% url "products:product_groups" %}">همه</a>
-      </div>
     </div>
-  </div>
+</div>
