@@ -14,4 +14,5 @@ urlpatterns = [
     path('product_groups_partials/',views.get_product_groups,name='product_groups_partials'),
     path('brands_partial/<slug:slug>/',views.get_brands,name='brands_partial'),
     path('features_for_filter/<slug:slug>/',views.get_features_for_filter,name='features_for_filter'),
+    path('ajax_admin/', views.get_filter_value_for_feature, name="filter_value_for_feature"),
 ]

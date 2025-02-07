@@ -155,11 +155,12 @@ class ProductFeatureInlineAdmin(admin.TabularInline):
     
     class Media:
         css = {
-            'all': ('css/admin_style.css',)
+            'all': ('assets/css/admin_style.css',)
         }
-        
+     
         js = (
-            ('js/admin_script.js',)
+            'assets/js/ajax.js',
+            'assets/js/admin_script.js',
         )
 # ---------------------------- گالری تصاویر در صفحه جِزِئیات-----------------------------------------------------------------------------
 class ProductGalleryInlineAdmin(admin.TabularInline):

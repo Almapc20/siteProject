@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Product, ProductGroup, Brand
+from .models import Product, ProductGroup, Brand, FeatureValue
 from django.db.models import Q, Count, Min, Max
 from django.views import View
 from django.http import JsonResponse
@@ -90,7 +90,7 @@ def get_features_for_filter(request,*args,**kwargs):
     
     return render(request,'products_app/partials/features_filter.html',{'feature_dict':feature_dict})
         
-# #-لیست محصولات هر گروه محصولات--------------------------------------------------------------------------------------------------------------
+#-لیست محصولات هر گروه محصولات--------------------------------------------------------------------------------------------------------------
 class ProductByGroupView(View):
     def get(self,request,*args,**kwargs):
         slug = kwargs['slug']
@@ -150,11 +150,16 @@ class ProductByGroupView(View):
             'show_count_product':show_count_product,
              'filter':filter,
             
-        }            
-    
-        
- 
-
+        }    
         return render(request,"products_app/products.html",{"products":products,'current_group':current_group})
+
+#======================== جی کوئری ارتباط ویژگی ها =======================================
+def get_filter_value_for_feature(request):
+    if request.method == 'GET':
+        feature_id= request.GET["feature_id"]
+        feature_values= FeatureValue.objects.filter(feature_id= feature_id)
+        res= {fv.value_title:fv.id for fv in feature_values}
+
+        return JsonResponse(data=res, safe=False)
 
         
