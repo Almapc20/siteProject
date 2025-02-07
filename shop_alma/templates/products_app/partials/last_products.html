@@ -1,11 +1,9 @@
-<div class="block block-products-carousel" data-layout="grid-5">
-    <div class="container">
+
         
         {% include "partials/product/root_group.html" with title='جدیدترین محصولات'  %}
-                <div class="product-flexbox" style="">
+                
                             {% for product in products %}
                                 {% include "partials/product/product_box.html" with type=2 %}                
                             {% endfor %}
-                </div>
-    </div>
-</div>
+                 
+    

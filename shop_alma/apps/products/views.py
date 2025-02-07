@@ -12,7 +12,7 @@ def get_root_group():
 
 #==========================ارزانترین محصولات=========================================
 def get_cheapest_products(request, *args, **kwargs):
-    products= Product.objects.filter(is_active= True).order_by('price')[:5]
+    products= Product.objects.filter(is_active= True).order_by('price')[:4]
     product_groups= get_root_group()
     context= {
         "products": products,
@@ -23,7 +23,7 @@ def get_cheapest_products(request, *args, **kwargs):
 
 #========================جدیدترین محصولات=======================================
 def get_last_products(request, *args, **kwargs):
-    products= Product.objects.filter(is_active= True).order_by('-published_date')[:5]
+    products= Product.objects.filter(is_active= True).order_by('-published_date')[:4]
     product_groups= get_root_group()
     context= {
         "products": products,
