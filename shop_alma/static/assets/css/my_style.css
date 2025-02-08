@@ -513,3 +513,17 @@ nav input {
 .mt-5 {
     margin-top: 14rem !important;
 }
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 25%;
+    padding: 10px;
+}
+
+.main-content {
+    width: 75%;
+    padding: 10px;
+}
