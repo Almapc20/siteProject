@@ -83,7 +83,7 @@ class ProductsByGroupView(View):
         brand_filter= request.GET.getlist('brand')
         if brand_filter:
             products=products.filter(brand__id__in=brand_filter)
-            
+                       
         #features filter
         feature_filter= request.GET.getlist('feature')
         if feature_filter:
@@ -153,6 +153,7 @@ def get_brands(request, *args, **kwargs):
                         .annotate(count= Count('brands'))\
                         .filter(~Q(count=0))\
                         .order_by('-count')
+
     return render(request, 'products_app/partials/brands.html', {'brands': brands})
 
 #========================= لیست های دیگر فیلترها بر حسب مقادیر ویژگیهای کالاهای درون گروه =======================================

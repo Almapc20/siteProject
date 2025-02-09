@@ -1,3 +1,22 @@
+              {{ filter.form.brand }}
+              {% for brand in brands %}
+                <label class="filter-list__item">
+                  <span class="filter-list__input input-check">
+                    <span class="input-check__body">
+                      <input id="item_{{ brand.id }}" name="brand" value="{{ brand.id }}" type="checkbox" class="input-check__input" />
+                      <span class="input-check__box"></span>
+                      <svg class="input-check__icon" width="9px" height="7px">
+                        <use xlink:href="{{ media_url }}images/sprite.svg#check-9x7"></use>
+                      </svg>
+                    </span>
+                  </span><span class="filter-list__title">{{ brand.brand_title }}</span>
+                  <span class="filter-list__counter">{{ brand.brands.all|length }}</span>
+                </label>
+              {% endfor %}
+           
+{% comment %} 
+
+
 <div class="widget-filters__item">
     <div>
       <div id="accordion">
@@ -36,4 +55,4 @@
       </div>
     </div>
   </div>
-  
+   {% endcomment %}
