@@ -16,8 +16,7 @@
               </button>
             </a>
           </div>
-          <div id="collapseOne{{key.id}}" class="collapse" data-parent="#accordion">
-            <div class="card-body" style="padding: 0;">
+        
               
               {% for item in value %}
                 <label class="filter-list__item">
@@ -32,8 +31,7 @@
                   </span><span class="filter-list__title">{{item.value_title}}</span>
                 </label>
               {% endfor %}
-            </div>
-          </div>
+        
       </div>
     {% endif %}
     {% endfor %}

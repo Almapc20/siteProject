@@ -516,7 +516,6 @@ nav input {
 
 .container {
     display: flex;
-    flex-direction: column;
 }
 
 .sidebar {
