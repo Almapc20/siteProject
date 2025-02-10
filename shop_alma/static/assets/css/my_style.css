@@ -508,22 +508,65 @@ nav input {
     width: 24.667%;
 }
 
-/* دسته بندی محصولات */
+/*  - دسته بندی محصولات - فیلترها - قیمت*/
+.card-body {
+    padding-right: 10;
+    padding-left: 10;
+}
+
+.card-font {
+    font-size: .8rem;
+
+}
 
 .mt-5 {
     margin-top: 14rem !important;
 }
 
-.container {
+.filter_categories_item {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 15;
+    padding-left: 15;
 }
 
-.sidebar {
-    width: 25%;
-    padding: 10px;
+.filter__arrow {
+    padding-left: 10px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
 }
 
-.main-content {
-    width: 75%;
-    padding: 10px;
+.filter__title {
+
+    --bs-btn-font-weight: 400;
+    --bs-btn-disabled-color: #6c757d;
+    text-decoration: none;
+    font-size: 1.2rem;
+    display: flex;
+    align-content: center;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+
+.filter-list__item {
+    padding-top: 5px;
+    padding-right: 10;
+    padding-left: 10;
+}
+
+.card-header {
+    background-color: #cac7c7;
+    margin: 10px;
+}
+
+.mb-01 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+
 }
