@@ -198,7 +198,7 @@ body {
 }
 
 .section {
-  margin-top: 120px;
+  margin-top: 30px;
 }
 
 .section-heading {
@@ -1023,8 +1023,8 @@ Most Played Style
 */
 
 .most-played {
-  background-color: #f7f7f7;
-  padding: 100px 0px;
+  background-color:rgba(0, 0, 0, 0.1);
+  padding: 30px 0px;
   border-radius: 150px;
 }
 
