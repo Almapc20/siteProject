@@ -1,0 +1,43 @@
+{% extends 'main_template.html' %}
+
+
+{% block title %}
+    بازرگانی مهوار ابرشهر
+{% endblock title %}
+    
+
+{% block content %}
+{% include "partials/banner/banner_box.html" with type=2 %}
+<div class="limiter">
+	<div class="container-login100" style="background-image: url('{{media_url}}/images/login/bg-01.jpg');">
+		<div>
+			<h2 class="header-text1-color">خوش آمدید</h2>
+		</div>
+		<div>
+			<h5 class="header-text1-color">برای ثبت نام کد دریافتی خود را وارد کنید</h5>
+		</div>
+		<br>
+		{% include "partials/message.html" %}
+		<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+			<form action="" method="post">
+				{% csrf_token %}
+                <label>کد دریافتی</label>
+                {{ form.as_p }}
+				<br><br>
+                <div class="container-login100-form-btn">
+					<div class="wrap-login100-form-btn">
+						<div class="login100-form-bgbtn"></div>
+						
+							<button type="submit" class="login100-form-btn input-reg">ارسال کد</button>    
+						
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+<div id="dropDownSelect1"></div>
+
+{% endblock content %}

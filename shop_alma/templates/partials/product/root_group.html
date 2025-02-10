@@ -1,0 +1,14 @@
+        <div class="col-lg-6">
+          <div class="section-heading">
+            <h6>پرطرفدار</h6>
+            <h2>  {{title}}  </h2>
+          </div>
+        </div>
+        
+        <div class="col-lg-6">
+          {% for group in product_groups %}
+            <div class="main-button">
+                <a href="#"> {{group.group_title}} </a>
+            </div>
+          {% endfor %}
+        </div>
