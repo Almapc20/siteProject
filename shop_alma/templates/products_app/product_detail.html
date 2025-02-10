@@ -1,6 +1,6 @@
 {% extends "main_template.html" %}
 {% load render_partial %}
-
+{% load humanize %}
 {% block title %}
 جزئیات محصول
 {% endblock title %}
@@ -33,7 +33,7 @@
         </div>
         <div class="col-lg-6 align-self-center">
           <h4>برند: <a href=""> {{product.brand}} </a></h4>
-          <span class="price"> قیمت : {{product.price}} تومان </span>
+          <span class="price"> قیمت : {{product.price|intcomma}} تومان </span>
           <p class="card-text">{{product.summery_description}}</p>
           <form id="qty" action="#">
             <input type="qty" class="form-control" id="1" aria-describedby="quantity" placeholder="1">
@@ -85,7 +85,7 @@
     </div>
   </div>
 
-{% render_partial 'products:related_products' slug=product.slug %}
+{% render_partial 'products:related_product' slug=product.slug %}
 
 
 

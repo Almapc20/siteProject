@@ -1,17 +1,9 @@
-  <div class="section most-played">
-    <div class="container">
-      <div class="row">
         <div class="col-lg-6">
           <div class="section-heading">
             <h6>پرطرفدار</h6>
             <h2> محبوب ترین ها </h2>
           </div>
         </div>
-        {% comment %} <div class="col-lg-6">
-          <div class="main-button">
-            <a href="shop.html">مشاهده همه</a>
-          </div>
-        </div> {% endcomment %}
 
         <div>
             <br>
@@ -20,18 +12,42 @@
             <div class="col-lg-6 col-md-6">
           <div class="item">
             <div class="thumb">
-              <a href="product-details.html"><img src="{{media_url}}{{group.image_name}}"  style="width: 80px;" alt=""></a>
-              <span class="price">{{group.products_of_groups.all|length}} محصول </span>
+                        <a href="{% url "products:products_of_group" slug=group.slug %}">
+                            <img src="{{media_url}}{{group.image_name}}" style="width: 80px; height: 80px;" alt="">
+                        </a>
+                   
             </div>
             <div class="down-content">
-              <h4>{{group.group_title}}</h4>
-              <a href="product-details.html"><i class="fa fa-shopping-bag"><span class="a-icon"> افزودن به سبد خرید </span></i></a>
+              <h5 href="{% url "products:products_of_group" slug=group.slug %}">{{group.group_title}}</h5>
+              <a href="">{{group.product_of_groups.all|length}} محصول</a>
+              <a href="product-details.html"><i class="fa fa-shopping-bag"><span class="a-icon"> مشاهده محصولات </span></i></a>
             </div>
           </div>
         </div>
         
         {% endfor %}
-
+       <a href="{% url "products:product_groups" %}">همه</a>
       </div>
     </div>
   </div>
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
