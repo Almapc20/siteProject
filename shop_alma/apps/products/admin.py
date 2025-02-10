@@ -137,12 +137,12 @@ class ProductFeatureInstanceInlineAdmin(admin.TabularInline):
     
     class Media:
         css= {
-            'all': ('css/admin_style.css', )
+            'all': ('assets/css/admin_style.css', )
         }
 
         js= (
-            'js/ajax.js',
-            'js/admin_script.js', 
+            'assets/js/ajax.js',
+            'assets/js/admin_script.js', 
         )
 #-------------------زیرگروه گالری تصاویر---------------------------------------------
 class ProductProductGaleryInstanceInlineAdmin(admin.TabularInline):
