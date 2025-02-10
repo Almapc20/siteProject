@@ -3,9 +3,9 @@ from email.mime import image
 from utils import FileUpload
 from django.utils import timezone
 from django.urls import reverse
-from django_ckeditor_5.fields import CKEditor5Field
-# from ckeditor_uploader.fields import RichTextUploadingField
-# from ckeditor.fields import RichTextField
+# from django_ckeditor_5.fields import CKEditor5Field
+from ckeditor_uploader.fields import RichTextUploadingField
+from ckeditor.fields import RichTextField
 
 
 
@@ -59,8 +59,8 @@ class Feature(models.Model):
 class Product(models.Model):
     product_name= models.CharField(max_length=500, verbose_name="نام کالا")
     summery_description= models.TextField(default="", blank=True, null=True, verbose_name="توضیحات کالا")    
-    # description= RichTextUploadingField(config_name= 'special', blank= True)    
-    description=CKEditor5Field('Text', config_name='extends', blank= True)    
+    description= RichTextUploadingField(config_name= 'special', blank= True)    
+    # description=CKEditor5Field('Text', config_name='extends', blank= True)    
     file_uplaod= FileUpload('images', 'product')
     image_name= models.ImageField(upload_to=file_uplaod.upload_to, verbose_name="تصویر کالا")
     price= models.PositiveIntegerField(default=0, verbose_name="قیمت کالا")

@@ -245,26 +245,6 @@ body {
   color: #fff;
 }
 
-.main-button2 a {
-  display: inline-block;
-  background-color: #ee626b;
-  text-transform: uppercase;
-  color: #fff;
-  font-size: 14px;
-  font-weight: 600;
-  height: 50px;
-  line-height: 50px;
-  padding: 0px 30px;
-  border-radius: 25px;
-  transition: all .3s;
-  align-items: center;
-}
-
-.main-button2 a:hover {
-  background-color: #0071f8;
-  color: #fff;
-}
-
 /* 
 ---------------------------------------------
 Pre-loader Style
@@ -1401,8 +1381,8 @@ Shop Page Style
   background-color: #ee626b;
   color: #fff;
   border-radius: 50%;
-  left: 10px;
-  bottom: 24px;
+  right: 25px;
+  bottom: 25px;
   transition: all .3s;
 }
 
