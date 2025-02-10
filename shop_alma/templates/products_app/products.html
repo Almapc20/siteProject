@@ -12,61 +12,56 @@
     <div class="row">
         <!-- Sidebar Filters -->
         <aside class="col-lg-3">
-            <div class="accordion" id="filtersAccordion">
-                
-                <!-- دسته بندی -->
-                <div class="card">
-                    <div class="card-header" id="headingCategories">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseCategories" aria-expanded="true" aria-controls="collapseCategories">
-                                دسته‌ها
-                            </button>
-                        </h2>
-                    </div>
-                    <div id="collapseCategories" class="collapse show" aria-labelledby="headingCategories" data-parent="#filtersAccordion">
-                        <div class="card-body">
-                            {% render_partial 'products:product_groups_partial' %}
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- برندها -->
-                <div class="card">
-                    <div class="card-header" id="headingCategories">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseCategories" aria-expanded="true" aria-controls="collapseCategories">
-                                برندها
-                            </button>
-                        </h2>
-                    </div>
-                    <div id="collapseCategories" class="collapse show" aria-labelledby="headingCategories" data-parent="#filtersAccordion">
-                        <div class="card-body">
-                            {% render_partial 'products:brands_partial' slug=group_slug %}
-                        </div>
-                    </div>
-                </div>
 
-                 <!-- ویژگی‌ها -->
-                 <div class="card">
-                   <div class="card-header" id="headingCategories">
-                       <h2 class="mb-0">
-                           <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseCategories" aria-expanded="true" aria-controls="collapseCategories">
-                            ویژگی‌ها
-                           </button>
-                       </h2>
-                   </div>
-                   <div id="collapseCategories" class="collapse show" aria-labelledby="headingCategories" data-parent="#filtersAccordion">
-                       <div class="card-body">
-                        {% render_partial 'products:features_for_filter' slug=group_slug %}
-                       </div>
-                   </div>
-    
-
-
-              
-                {% include "partials/product/price_filter.html" %}
+            <!-- دسته بندی -->
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        دسته‌ها
+                    </button>
+                </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">{% render_partial 'products:product_groups_partial' %} </div>
             </div>
-            
+            </div>
+            <!-- قیمت  -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        بر اساس قیمت 
+                    </button>
+                </h2>
+            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">  {% include "partials/product/price_filter.html" %} </div>
+            </div>
+            </div>
+
+             <!-- برندها -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                         برندها
+                    </button>
+                </h2>
+            <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">{% render_partial 'products:brands_partial' slug=group_slug %}</div>
+            </div>
+            </div>
+            <!-- ویژگی‌ها -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                         ویژگی‌ها
+                    </button>
+                </h2>
+            <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">{% render_partial 'products:features_for_filter' slug=group_slug %}</div>
+            </div>
+            </div>
+
+
+            </div>
             <!-- Filter Buttons -->
             <div class="mt-3 d-flex justify-content-between">
                 <button type="submit" class="btn btn-primary">فیلتر</button>
