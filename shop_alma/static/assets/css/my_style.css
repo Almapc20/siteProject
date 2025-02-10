@@ -523,7 +523,7 @@ nav input {
     margin-top: 14rem !important;
 }
 
-.filter_categories_item {
+.filter-categories__item {
     display: flex;
     align-items: center;
     justify-content: space-between;
