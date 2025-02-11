@@ -5,8 +5,7 @@
  */
  .fa {
   font-family: var(--fa-style-family, "Font Awesome 6 Free");
-  font-weight: var(--fa-style, 900); 
-}
+  font-weight: var(--fa-style, 900); }
 
 .fa,
 .fas,
@@ -26,7 +25,7 @@
   display: var(--fa-display, inline-block);
   font-style: normal;
   font-variant: normal;
-  line-height: 3;
+  line-height: 1;
   text-rendering: auto; }
 
 .fa-1x {

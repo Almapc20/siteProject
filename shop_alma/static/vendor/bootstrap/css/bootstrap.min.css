@@ -3754,7 +3754,8 @@ fieldset:disabled .btn {
     --bs-btn-disabled-border-color: transparent;
     --bs-btn-box-shadow: none;
     --bs-btn-focus-shadow-rgb: 49, 132, 253;
-    text-decoration: underline
+    text-decoration: none;
+    font-size: 1.2rem;
 }
 
 .btn-link:focus-visible {
@@ -4990,7 +4991,7 @@ fieldset:disabled .btn {
 
 .card-body {
     flex: 1 1 auto;
-    padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+    /* padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x); */
     color: var(--bs-card-color)
 }
 
