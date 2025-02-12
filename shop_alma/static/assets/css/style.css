@@ -165,7 +165,6 @@ h6 {
 	flex-shrink: 0
 }
 .site__body {
-	padding-top: 50px;
 	-ms-flex-positive: 1;
 	flex-grow: 1
 }
@@ -757,7 +756,7 @@ screen and (-ms-high-contrast:active) {
 	border-radius: 2px
 }
 .card-body {
-	padding: 2rem
+	padding: .1rem
 }
 .card-footer,
 .card-header {
@@ -8843,7 +8842,7 @@ screen and (-ms-high-contrast:active) {
 	display: none
 }
 .block-sidebar__item+.block-sidebar__item {
-	margin-top: 30px
+	margin-top: 50px
 }
 .block-sidebar--position--start {
 	padding-left: 20px
