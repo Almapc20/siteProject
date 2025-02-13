@@ -54,6 +54,7 @@
       </li>
       <li><a href="#"> درباره ما </a></li>
       <li><a href="#"> ارتباط با ما </a></li>
+      
     </ul>
 
 
@@ -82,6 +83,15 @@
   <!-- ***** Logo End ***** -->
 
     <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+  </div>
+
+  <div class="indicator">
+    <a href="{% url "orders:shop_cart" %}">
+    <span>
+      <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+    </span>
+    <span class="indicator__value" id="indicator__value">0</span>
+    </a>
   </div>
 </nav>
 

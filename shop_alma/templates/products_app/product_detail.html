@@ -37,7 +37,7 @@
           <p class="card-text">{{product.summery_description}}</p>
           <form id="qty" action="#">
             <input type="qty" class="form-control" id="1" aria-describedby="quantity" placeholder="1">
-            <button type="submit"><i class="fa fa-shopping-bag"></i><span class="a-icon"> افزودن به سبد خرید </span></button>
+            <button type="submit" onclick="aad_to_shop_cart({{product.id}},1)"><i class="fa fa-shopping-bag"></i><span class="a-icon"> افزودن به سبد خرید </span></button>
           </form>
           <ul>
             

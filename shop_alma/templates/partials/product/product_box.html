@@ -10,7 +10,7 @@
             <div class="down-content">
                 {% comment %} <span class="category">Adventure</span> {% endcomment %}
                 <h4>{{product.product_name}}</h4>
-                <a calass= "" href="{{product.get_absolute_url}}"><i class="fa fa-shopping-bag"><span class="a-icon"> افزودن به سبد خرید </span></i></a>
+                <a calass= "" href="" onclick="aad_to_shop_cart({{product.id}},1)"><i class="fa fa-shopping-bag"><span class="a-icon"> افزودن به سبد خرید </span></i></a>
             </div>
           </div>
         </div>
@@ -27,12 +27,13 @@
             </div>
             <div class="down-content">
               <span class="category">{{product.product_name}}</span>
-              <a href="{{product.get_absolute_url}}"><i class="fa fa-shopping-bag"><span class="a-icon"> افزودن به سبد خرید </span></i></a>
+              <a href="" onclick="aad_to_shop_cart({{product.id}},1)"><i class="fa fa-shopping-bag"><span class="a-icon"> افزودن به سبد خرید </span></i></a>
             </div>
           </div>
         </div>
 {% elif type == 3 %}    
 
+{% comment %} {{product.get_absolute_url}} {% endcomment %}
 {% comment %} <div class="most-played">
   <div class="container">
     <div class="row">
@@ -104,7 +105,7 @@
             <div class="product-card__buttons">
                 {% if product.get_number_in_warehouse > 0 %}
                 <button class="btn btn-primary product-card__addtocart" type="button"
-                 onclick="add_to_shop_cart({{product.id}},1)">افزودن به سبد</button>
+                 onclick="aad_to_shop_cart({{product.id}},1)">افزودن به سبد</button>
             {% endif %}
 
             {% if user.is_authenticated %}

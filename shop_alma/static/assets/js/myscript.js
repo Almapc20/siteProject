@@ -55,7 +55,7 @@ function select_sort() {
 }
 
 // shop cart --------------------------------------------------
-status_of_shop_cart()
+
 function status_of_shop_cart(){
     $.ajax({
         type: "GET",
@@ -66,7 +66,9 @@ function status_of_shop_cart(){
     });   
 }
 
-function add_to_shop_cart(product_id,qty){
+status_of_shop_cart()
+
+function aad_to_shop_cart(product_id,qty){
     if (qty === 0 ){
         qty=$("#product-quantity").val();
     }
@@ -79,6 +81,7 @@ function add_to_shop_cart(product_id,qty){
         },
         success: function(res){
             alert("کالای مورد نظر به سبد شما اضافه شد");
+            $("#indicator__value").text(res);
             status_of_shop_cart()
         }
     });
@@ -101,28 +104,28 @@ function delete_from_shop_cart(product_id) {
 }
 
 function update_shop_cart() {
-    var product_id_list= [];
-    var qty_list= [];
-    $("input[id^='qty_']").each(function(index) {
+    var product_id_list=[]
+    var qty_list=[]
+    $("input[id^='qty_'").each(function(index) {
         product_id_list.push($(this).attr('id').slice(4));
         qty_list.push($(this).val());
     });
     console.log(product_id_list);
-    console.log(qty_list);
-
+    console.log(qty_list)
     $.ajax({
-        type: "GET",
-        url: "/orders/update_shop_cart/",
-        data: {
+        type:"GET",
+        url:"/orders/update_shop_cart/",
+        data:{
             product_id_list:product_id_list,
-            qty_list:qty_list,
+            qty_list:qty_list
         },
-        success: function(res) {
-            alert("okkkkk");
-            $("#shop_cart_list").html(res)
-            status_of_shop_cart()
+        success:function (res) {
+            alert("ssss");
+            $("#shop_cart_list").html(res);
+            status_of_shop_cart();
         }
     });
 }
 
 
+// =========================================shop_cart
