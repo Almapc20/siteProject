@@ -333,7 +333,7 @@ nav .wrapper {
 
     /* custom scroll bar */
     ::-webkit-scrollbar {
-        width: 10px;
+        width: 50px;
     }
 
     ::-webkit-scrollbar-track {
@@ -510,8 +510,8 @@ nav input {
 
 /*  - دسته بندی محصولات - فیلترها - قیمت*/
 .card-body {
-    padding-right: 10;
-    padding-left: 10;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 .card-font {
@@ -569,4 +569,29 @@ nav input {
     justify-content: center;
     text-decoration: none;
 
+}
+
+/* =============================== ACCORDIAN ===================================================== */
+summary {
+    background-color: #ee4156;
+    color: white;
+    cursor: pointer;
+    padding: 0px;
+}
+
+details {
+    border: 2px solid blue;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+details[open] summary {
+    background-color: #3b3b3b;
+}
+
+/* =============================== order page stule =============================================== */
+.basket {
+    font-size: 3rem;
 }

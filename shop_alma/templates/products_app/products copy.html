@@ -41,32 +41,59 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- ========================================================================================== -->
+                                
                                 <!------------------------- فیلتر قیمت ها ----------------------->
-                                    <details>
-                                      <summary> بر اساس قیمت کالاها </summary>
-                                      <div>
-                                        <p> {% include "partials/product/price_filter.html" %}</p>
-                                      </div>
-                                    </details>
+                                <div class="widget-filters__item">
+                                    <div class="filter filter--opened" data-collapse-item>
+                                        <button type="button" class="filter__title" data-collapse-trigger> بر اساس قیمت کالاها فیلتر کن
+                                            <svg class="filter__arrow" width="12px" height="7px">
+                                                <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
+                                            </svg>
+                                        </button>
+                                        <div class="filter__body" data-collapse-content>
+                                            <div class="filter__container">
+                                                <div class="filter-categories">
+                                                    {% include "partials/product/price_filter.html" %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <!------------------------------برند ها ----------------------------------->
-                                    <details>
-                                      <summary> بر اساس برند کالاها </summary>
-                                      <div>
-                                        <p>{% render_partial 'products:brands_partial' slug=group_slug %}</p>
-                                      </div>
-                                    </details>
-                                    <details>
-                                      <summary> بر اساس ویژگی کالاها </summary>
-                                      <div>
-                                        <p>{% render_partial 'products:features_for_filter' slug=group_slug %}</p>
-                                      </div>
-                                    </details>
-                                <!-- -------------------  فیلتر بر اساس ویژگی های کالا  -->
+                                <div class="widget-filters__item">
+                                    <div class="filter filter--opened" data-collapse-item>
+                                        <button type="button" class="filter__title" data-collapse-trigger> بر اساس برند کالاها فیلتر کن
+                                            <svg class="filter__arrow" width="12px" height="7px">
+                                                <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
+                                            </svg>
+                                        </button>
+                                        <div class="filter__body" data-collapse-content>
+                                            <div class="filter__container">
+                                                <div class="filter-categories">
+                                                    {% render_partial 'products:brands_partial' slug=group_slug %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                                
-                               
-                                
+                                <!-- -------------------  فیلتر بر اساس ویژگی های کالا  -->
+                                <div class="widget-filters__item">
+                                    <div class="filter filter--opened" data-collapse-item>
+                                        <button type="button" class="filter__title" data-collapse-trigger> بر اساس ویژگی کالاها فیلتر کن
+                                            <svg class="filter__arrow" width="12px" height="7px">
+                                                <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
+                                            </svg>
+                                        </button>
+                                        <div class="filter__body" data-collapse-content>
+                                            <div class="filter__container">
+                                                <div class="filter-categories">
+                                                    {% render_partial 'products:features_for_filter' slug=group_slug %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 
 
                             </div>
