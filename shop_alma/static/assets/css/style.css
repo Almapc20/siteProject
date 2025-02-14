@@ -9272,7 +9272,16 @@ screen and (min-width:480px) and (-ms-high-contrast:active) {
 	display: flex;
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
-	margin: -6px
+	margin: -6px;
+}
+
+.block-categories__list-all {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin: -6px;
+	padding-top: 100px;
 }
 
 .block-categories__item {

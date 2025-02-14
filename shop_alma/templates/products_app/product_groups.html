@@ -12,7 +12,7 @@
             <h3 class="block-header__title">دسته های محبوب</h3>
             <div class="block-header__divider"></div>
         </div>
-        <div class="block-categories__list">
+        <div class="block-categories__list-all">
             {% for group in product_groups %}
             <div class="block-categories__item category-card category-card--layout--compact">
                 <div class="category-card__body">
@@ -28,7 +28,7 @@
                 </div>
             </div>
             {% endfor %}
-            <a href="{% url "products:product_groups" %}">همه</a>
+            <a href='{% url "products:product_groups" %}'>همه</a>
         </div>
     </div>
 </div>

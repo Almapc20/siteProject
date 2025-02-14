@@ -165,9 +165,15 @@ def get_feautres_for_filter(request, *args, **kwargs):
     
     return render(request, 'products_app/partials/features_filter.html', {'feature_dict':feature_dict})
 
+# =================================================================================================================
+class ProductAllView(View):   
+    def get(self, request):
+        product_all= Product.objects.filter(Q(is_active=True))\
+                        .annotate(count= Count('product_name'))\
+                        .order_by('-count')
+        return render(request, "products_app/shop.html/", {'product_all':product_all})
 
-
-
+# =====================================================================================================================
 
 
 

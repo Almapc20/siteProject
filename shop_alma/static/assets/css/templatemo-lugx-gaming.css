@@ -198,7 +198,7 @@ body {
 }
 
 .section {
-  margin-top: 120px;
+  margin-top: 20px;
 }
 
 .section-heading {
@@ -747,7 +747,7 @@ Banner Style
   background-position: center bottom;
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 170px 0px 150px 0px;
+  padding: 180px 0px 150px 0px;
 }
 
 .main-banner .caption h6 {
@@ -922,7 +922,15 @@ Trending Style
   overflow: hidden;
   border-radius: 25px;
   margin-bottom: 30px;
+  margin: 10px;
+  min-height: 420px;
+  max-height: 420px;
 }
+
+.trending .item :hover {
+  border: 2px #ee626b solid;
+}
+
 
 .trending .item .thumb {
   position: relative;
@@ -1003,7 +1011,7 @@ Most Played Style
 
 .most-played {
   background-color: #f7f7f7;
-  padding: 100px 0px;
+  padding: 30px 0px;
   border-radius: 150px;
 }
 
@@ -1283,7 +1291,7 @@ Shop Page Style
 .trending ul.trending-filter {
   list-style: none;
   text-align: center;
-  margin-bottom: 70px;
+  margin-bottom: 30px;
 }
 
 .trending ul.trending-filter li {
@@ -1323,6 +1331,7 @@ Shop Page Style
   overflow: hidden;
   border-radius: 25px;
   margin-bottom: 30px;
+
 }
 
 .trending-box .item .thumb {

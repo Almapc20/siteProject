@@ -1,0 +1,95 @@
+{% extends "main_template.html" %}
+{% load render_partial %}
+{% load humanize %}
+{% block title %}
+    صفحه اول
+{% endblock title %}
+
+{% block content %}
+
+<!-- site__body -->
+{% include "partials/banner/banner_box.html" with type=2 %}
+
+<div class="shop_body">
+  <div class="section trending">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <h3> فروشگاه محصولات </h3>
+          </div>
+        </div>
+        <ul class="trending-filter">
+          <li>
+            <a class="is_active" href="#!" data-filter="*"> نمایش همه </a>
+          </li>
+          <li>
+            <a href='' data-filter=".adv"> لپ تاپ </a>
+          </li>
+          <li>
+            <a href="#!" data-filter=".str"> لوازم جانبی </a>
+          </li>
+          <li>
+            <a href="#!" data-filter=".rac"> قطعات </a>
+          </li>
+        </ul>       
+<!-- ============================================================================================================================= -->
+        <div class="block block--highlighted block-categories block-categories--layout--compact">
+            <div class="container">
+           
+                <div class="block-categories__list">
+                    
+                    {% for product in product_all %}
+                    <div class="col-lg-3 col-md-6 align-self-center mb-30 col-md-6 adv">
+                      <div class="item img_hover">
+                        <div class="thumb">
+                          <a href="{{product.get_absolute_url}}"><img src="{{media_url}}{{product.image_name}}"alt=""></a>
+                          <span class="price">{{ product.price |intcomma}} تومان</span>
+                        </div>
+                        <div class="down-content min_max_height">
+                          <span class="category">{{ product.product_name}}</span>
+                          
+                        </div>
+                        <div class="cart_product">
+                            <div><a href="#"> جزئیات محصول </a></div>
+                            <div ><a href="product-details.html"><span class="buy_content"><i class="fa fa-shopping-bag"></i></span></a></div>
+                        </div>
+                      </div>
+                    </div>
+                      
+                    {% endfor %} 
+                    <a href='{% url "products:product_groups" %}'>همه</a>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    
+   
+ 
+           
+               
+               
+               
+               <div class="row">
+          <div class="col-lg-12">
+            <ul class="pagination">
+            <li><a href="#"> &lt; </a></li>
+            <li><a href="#">1</a></li>
+              <li><a class="is_active" href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#"> &gt; </a></li>
+            </ul>
+          </div>
+        </div>
+        
+          </div>
+        </div>
+    </div>
+</div>
+</div>  
+<!-- site__body / end -->
+
+{% endblock content %}
