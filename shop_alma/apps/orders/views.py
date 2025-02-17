@@ -4,6 +4,11 @@ from .shop_cart import ShopCart
 from apps.products.models import Product
 from django.http import HttpResponse
 import utils
+from django.contrib.auth.mixins import LoginRequiredMixin
+from apps.accounts.models import Customer
+from .models import Order,OrderDetail,PaymentType
+from .forms import OrderForm
+from django.core.exceptions import ObjectDoesNotExist
 #============================================================================
 
 class ShopCartView(View):
@@ -61,4 +66,65 @@ def update_shop_cart(request):
 def statuse_of_shop_cart(request):
     shop_cart=ShopCart(request)
     return HttpResponse(shop_cart.count)
+#------------------------------------------------------------------------------------------
+class CreateOrderView(LoginRequiredMixin,View):
+    def get(self,request):
+        
+        try:
+            customer=Customer.objects.get(user=request.user)
+        except ObjectDoesNotExist:
+            customer=Customer.objects.create(user=request.user)
+            
+        order=Order.objects.create(customer=customer,payment_type=get_object_or_404(PaymentType,id=1))
+        shop_cart=ShopCart(request)
+        for item in shop_cart:
+            OrderDetail.objects.create(
+                order=order,
+                product=item['product'],
+                price=item['price'],
+                qty=item['qty']
+            )
+        return redirect('orders:checkout_order',order.id)
+#--------------------------------------------------------------------------------------
+class CheakoutOrderView(LoginRequiredMixin,View):
+    def get(self,request,order_id):
+        user=request.user
+        customer=get_object_or_404(Customer,user=user)
+        shop_cart=ShopCart(request)
+        order=get_object_or_404(Order,id=order_id) 
+        total_price=shop_cart.calc_total_price()
+        delivery=25000
+        if total_price>500000:
+            delivery=0 
+        tax=0.09*total_price
+        order_final_price=total_price+delivery+tax
+        
+        
+        data={
+            'name':user.name,
+            'family':user.family,
+            'email':user.email,
+            'phone_number':customer.phone_number,
+            'address':customer.address,
+            'description':order.description,
+            'payment_type':order.payment_type
+        }
+        
+        form=OrderForm(data)
+        #form_coupon = CouponForm() 
+        
+       
 
+        
+        context={
+            'shop_cart':shop_cart,
+            'total_price':total_price,
+            'delivery':delivery,
+            'tax':tax,
+            'order_final_price':order_final_price,
+            'order':order,
+            'form':form,
+            # 'form_coupon' : form_coupon
+        }
+        
+        return render(request,'orders_app/checkout.html',context)
