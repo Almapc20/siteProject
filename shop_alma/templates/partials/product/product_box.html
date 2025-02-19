@@ -1,11 +1,21 @@
  {% load static %}
+ {% load humanize %}
  
 {% if type == 1 %}
         <div class="col-lg-2 col-md-6 col-sm-6 col-size">
           <div class="item">
             <div class="thumb">
                 <a href="{{product.get_absolute_url}}"><img src="{{media_url}}{{product.image_name}}" alt=""></a>
-                <span class="price">{{product.price}}</span>
+                {% if product.price > product.get_price_by_discount %}
+                  
+                   <span class="price"><del>قیمت : {{product.price|intcomma}} تومان</del></span></br>
+                   <span>قیمت : {{product.get_price_by_discount|intcomma}} تومان</span>
+                {% else %}
+                  <div class="product-card-price">
+                  <span class="price">{{product.price}}</span>
+                  </div>
+                {% endif %}
+                
             </div>
             <div class="down-content">
                 {% comment %} <span class="category">Adventure</span> {% endcomment %}
@@ -19,7 +29,15 @@
           <div class="item">
             <div class="thumb">
               <a href="{{product.get_absolute_url}}"><img src="{{media_url}}{{product.image_name}}" alt=""></a>
-              <span class="price">{{product.price}}</span>
+                {% if product.price > product.get_price_by_discount %}
+                  
+                   <span class="price"><del>قیمت : {{product.price|intcomma}} تومان</del></span></br>
+                   <span>قیمت : {{product.get_price_by_discount|intcomma}} تومان</span>
+                {% else %}
+                  <div class="product-card-price">
+                  <span class="price">{{product.price}}</span>
+                  </div>
+                {% endif %}
               <span class="position-absolute top-0.57 start-99.5 translate-middle badge rounded-pill bg-danger">
               جدید
               

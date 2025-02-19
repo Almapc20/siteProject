@@ -6,6 +6,9 @@ from django.urls import reverse
 # from django_ckeditor_5.fields import CKEditor5Field
 from ckeditor_uploader.fields import RichTextUploadingField
 from ckeditor.fields import RichTextField
+from datetime import datetime
+
+#------------------------------------------------------------------------------------------------------- 
 
 
 
@@ -79,6 +82,20 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse("products:product_details", kwargs={"slug": self.slug})
     
+    
+    #قیمت با تخفیف کالا
+    def get_price_by_discount(self):
+        list1=[]
+        for dbd in self.discount_basket_details2.all():
+            if (dbd.discount_basket.is_active == True and 
+                dbd.discount_basket.start_date <= datetime.now() and 
+                datetime.now() <= dbd.discount_basket.end_date):
+                list1.append(dbd.discount_basket.discount)
+        discount=0
+        if(len(list1)>0):
+            discount=max(list1)
+    
+        return self.price-(self.price*discount/100)
     
     class Meta:
         verbose_name= " کالا"
