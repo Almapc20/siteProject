@@ -11,6 +11,11 @@ from .forms import OrderForm
 from django.core.exceptions import ObjectDoesNotExist
 from apps.discounts.forms import CouponForm
 from apps.discounts.models import Coupon
+from django.db.models import Q
+from datetime import datetime
+from django.contrib import messages
+import utils
+
 #============================================================================
 
 class ShopCartView(View):
@@ -101,6 +106,9 @@ class CheakoutOrderView(LoginRequiredMixin,View):
         tax=0.09*total_price
         order_final_price=total_price+delivery+tax
         
+        if order.discount > 0 :
+            order_final_price=order_final_price-(order_final_price*order.discount/100)
+        
         
         data={
             'name':user.name,
@@ -130,3 +138,67 @@ class CheakoutOrderView(LoginRequiredMixin,View):
         }
         
         return render(request,'orders_app/checkout.html',context)
+    
+    def post(self,request,order_id):
+        form=OrderForm(request.POST)
+        if form.is_valid():
+            cd=form.cleaned_data 
+            
+            
+            try:
+                order=Order.objects.get(id=order_id)
+                order.description=cd['description']
+                order.payment_type=PaymentType.objects.get(id=cd['payment_type'])
+                order.save()
+                
+                user=request.user
+                user.name=cd['name']
+                user.family=cd['family']
+                user.email=cd['email']
+                user.save()
+            
+                customer=Customer.objects.get(user=user)
+                customer.phone_number=cd['phone_number']
+                customer.address=cd['address']
+                customer.save()
+                messages.success(request," اطلاعات با موفقیت ثبت شد ",'')
+                return redirect('orders:checkout_order',order_id)                
+            except ObjectDoesNotExist:
+                messages.error(request,"فاکتوری با این مشخصات یافت نشد",'danger')
+                return redirect('orders:checkout_order',order_id)
+        return redirect('orders:checkout_order',order_id)
+    
+#-----------------------------------------------------------------------------------
+class ApplyCoupon(View):
+    def post(self, request, *args, **kwargs):
+        order_id = kwargs['order_id']
+        coupon_form = CouponForm(request.POST)
+        if coupon_form.is_valid():
+            cd = coupon_form.cleaned_data
+            coupon_code = cd['coupon_form']
+            
+             # شرایط تایید کوپن 
+            coupon = Coupon.objects.filter(
+                Q(coupon_code=coupon_code) &
+                Q(is_active=True) &
+                Q(start_date__lte=datetime.now()) &
+                Q(end_date__gte=datetime.now())
+            )
+            discount=0
+            try:
+                order = Order.objects.get(id=order_id)
+                if coupon.exists():
+                    discount = coupon[0].discount
+                    order.discount = discount
+                    order.save()
+                    messages.success(request, "اعمال کوپن با موفقیت انجام شد")
+                    return redirect('orders:checkout_order', order_id)
+                    # return redirect('payments:zarinpal_payment', order_id) # این کد رو وقتی کدای زرین پال نوشتیم اجراش می کنیم
+                else:
+                    order.discount=discount
+                    order.save()
+                    messages.error(request, "کد وارد شده معتبر نمی‌باشد", 'danger')
+            except ObjectDoesNotExist:
+                messages.error(request, "سفارش موجود نیست")
+        
+        return redirect('orders:checkout_order', order_id)

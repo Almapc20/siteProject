@@ -35,7 +35,7 @@
 						</div>
 						<div class="col-12 col-lg-6 col-xl-7">
 							<div class="card mb-lg-0">
-							<form action="" method="post">
+							<form action="{% url 'orders:checkout_order' order_id=order.id %}" method="post">
 								<div class="card-body">
 									<h3 class="card-title">جزئیات پرداخت</h3>
 										{% csrf_token %}
@@ -133,7 +133,7 @@
 									
 									
 
-									<form action="" method="post" style="display: flex; justify-content:center;">
+									<form action="{% url 'orders:applay_coupon' order_id=order.id %}" method="post" style="display: flex; justify-content:center;">
 										{% csrf_token %}
 										{{form_coupon}}
 									<button type="submit" class="btn btn-primary">اعمال کد تخفیف</button>
