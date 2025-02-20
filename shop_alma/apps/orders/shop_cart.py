@@ -42,13 +42,13 @@ class ShopCart:
             temp[str(product.id)]["product"]=product
       
         for item in temp.values(): 
-            item["total_price"]=int(item['price']) *item["qty"]
+            item["total_price"]= int (item['final_price']) * item['qty']
             yield item
             
     
     def calc_total_price(self):
        sum=0
        for item in self.shop_cart.values():
-           sum += int(item['price']) *item['qty']
+           sum +=int(item['final_price'])*item['qty']
        return sum
        

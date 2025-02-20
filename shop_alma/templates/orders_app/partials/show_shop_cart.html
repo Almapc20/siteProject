@@ -43,7 +43,9 @@
 										<input id="qty_{{item.product.id}}" type="number" min="1" value="{{item.qty}}" style="width: 60px;">
 									</div>
 								</td>
-								<td class="cart-table__column cart-table__column--total" data-title="جمع کل">{{item.total_price|intcomma}} تومان</td>
+								<td class="cart-table__column cart-table__column--total" data-title="جمع کل">
+									{{item.total_price|intcomma}}
+								</td>
 								<td class="cart-table__column cart-table__column--remove">
 									<a type="button" class="btn btn-light btn-sm btn-svg-icon" onclick="delete_from_shop_cart({{item.product.id}})" style="cursor:pointer ;">
 										<i class="fa fa-trash"></i>

@@ -9,6 +9,8 @@ from apps.accounts.models import Customer
 from .models import Order,OrderDetail,PaymentType
 from .forms import OrderForm
 from django.core.exceptions import ObjectDoesNotExist
+from apps.discounts.forms import CouponForm
+from apps.discounts.models import Coupon
 #============================================================================
 
 class ShopCartView(View):
@@ -111,7 +113,7 @@ class CheakoutOrderView(LoginRequiredMixin,View):
         }
         
         form=OrderForm(data)
-        #form_coupon = CouponForm() 
+        form_coupon = CouponForm() 
         
        
 
@@ -124,7 +126,7 @@ class CheakoutOrderView(LoginRequiredMixin,View):
             'order_final_price':order_final_price,
             'order':order,
             'form':form,
-            # 'form_coupon' : form_coupon
+            'form_coupon' : form_coupon
         }
         
         return render(request,'orders_app/checkout.html',context)
