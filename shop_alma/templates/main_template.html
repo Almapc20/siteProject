@@ -49,13 +49,12 @@
 <body dir="rtl">
 
   <!-- ***** Preloader End ***** -->
-    {% include "partials/header.html" %}
+  {% include "partials/header.html" %}
+  
+  {% block content %}
+  {% endblock content %}
 
-    {% block content %}
-
-    {% endblock content %}
-
-    {% include "partials/footer.html" %}
+   {% include "partials/footer.html" %}
 
 
 </body>
