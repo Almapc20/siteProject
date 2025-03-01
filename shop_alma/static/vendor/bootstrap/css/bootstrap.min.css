@@ -446,7 +446,7 @@ svg {
 table {
     caption-side: bottom;
     border-collapse: collapse;
-    padding-top: 50px;
+    padding-top: 173px;
 }
 
 caption {
@@ -8660,7 +8660,6 @@ fieldset:disabled .btn {
     justify-content: right;
     padding-right: 560px;
 }
-
 .justify-content-center {
     justify-content: center !important
 }

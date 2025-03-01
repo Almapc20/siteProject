@@ -1,4 +1,5 @@
 {% extends "main_template.html" %}
+{% load static %}
 {% load render_partial %}
 {% load humanize %}
 {% block title %}
@@ -7,9 +8,26 @@
 
 {% block content %}
 
-{% include "partials/banner/banner_box.html" with type=3 %}
+
 <!-- site__body -->
-	
+		<div class="site__body">
+			<div class="page-header">
+				<div class="page-header__container container">
+					<div class="page-header__breadcrumb">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="index.html">خانه</a>
+									/
+								</li>
+								
+								<li class="breadcrumb-item active" aria-current="page">پرداخت</li>
+							</ol>
+						</nav>
+					</div>
+					<div class="page-header__title">
+						<h1>پرداخت</h1></div>
+				</div>
+			</div>
 			<div class="checkout block">
 				<div class="container">
 					<div class="row">
@@ -57,7 +75,7 @@
 									<div class="checkout__agree form-group">
 										<div class="form-check"><span class="form-check-input input-check"><span class="input-check__body"><input class="input-check__input" type="checkbox" id="checkout-terms"> <span class="input-check__box"></span>
 											<svg class="input-check__icon" width="9px" height="7px">
-												<use xlink:href="images/sprite.svg#check-9x7"></use>
+    											<use xlink:href="{% static 'assets/images/sprite.svg' %}#check-9x7"></use>
 											</svg>
 											</span>
 											</span>
