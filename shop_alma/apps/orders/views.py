@@ -3,7 +3,6 @@ from django.views import View
 from .shop_cart import ShopCart
 from apps.products.models import Product
 from django.http import HttpResponse
-import utils
 from django.contrib.auth.mixins import LoginRequiredMixin
 from apps.accounts.models import Customer
 from .models import Order,OrderDetail,PaymentType
