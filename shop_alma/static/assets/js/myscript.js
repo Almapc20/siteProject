@@ -68,7 +68,7 @@ function status_of_shop_cart(){
 
 status_of_shop_cart()
 
-function aad_to_shop_cart(product_id,qty){
+function add_to_shop_cart(product_id,qty){
     if (qty === 0 ){
         qty=$("#product-quantity").val();
     }
