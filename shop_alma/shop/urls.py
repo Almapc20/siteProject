@@ -26,7 +26,7 @@ urlpatterns = [
     path('accounts/', include("apps.accounts.urls", namespace="accounts")),
     path('products/', include("apps.products.urls", namespace="products")),
     path('orders/', include("apps.orders.urls", namespace="orders")),
-    path('discounts/',include('apps.discounts.urls',namespace='discounts')),
+    # path('discounts/',include('apps.discounts.urls',namespace='discounts')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
