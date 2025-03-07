@@ -1,4 +1,4 @@
-{% comment %} {% load humanize %}
+{% load humanize %}
 
  {% if shop_cart.count > 0 %}
 		<div class="site__body">
@@ -89,7 +89,7 @@
 												<td>{{order_final_price|intcomma}} تومان</td>
 											</tr>
 										</tfoot>
-									</table><a class="btn btn-primary btn-xl btn-block cart__checkout-button" href="{% url 'orders:create_order' %}">ادامه خرید</a></div>
+									</table><a class="btn btn-primary btn-xl btn-block cart__checkout-button" href="">ادامه خرید</a></div>
 							</div>
 						</div>
 					</div>
@@ -112,4 +112,4 @@
 
 
 
- {% endcomment %}
+

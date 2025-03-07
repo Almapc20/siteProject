@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
 from django.views import View
 from .forms import RegisterUserForm, VerifyRegisterForm, LoginUserForm, ChangePasswordForm, RememberPasswordForm
 import utils
 from .models import CustomUser
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 #------------------------------------------------------------------------------

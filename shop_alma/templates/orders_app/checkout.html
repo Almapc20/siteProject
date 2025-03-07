@@ -1,14 +1,14 @@
-{% comment %} {% extends "main_template.html" %}
-{% load static %}
+{% extends "main_template.html" %}
 {% load render_partial %}
 {% load humanize %}
 {% block title %}
   فاکتور سفارش
 {% endblock title %}
 
-	{% block content %}
+{% block content %}
 
-	<!-- site__body -->
+
+<!-- site__body -->
 		<div class="site__body">
 			<div class="page-header">
 				<div class="page-header__container container">
@@ -74,7 +74,7 @@
 									<div class="checkout__agree form-group">
 										<div class="form-check"><span class="form-check-input input-check"><span class="input-check__body"><input class="input-check__input" type="checkbox" id="checkout-terms"> <span class="input-check__box"></span>
 											<svg class="input-check__icon" width="9px" height="7px">
-    											<use xlink:href="{% static 'assets/images/sprite.svg' %}#check-9x7"></use>
+												<use xlink:href="images/sprite.svg#check-9x7"></use>
 											</svg>
 											</span>
 											</span>
@@ -151,4 +151,4 @@
 
 {% endblock content %}
 
- {% endcomment %}
+

@@ -6037,11 +6037,13 @@ screen and (-ms-high-contrast:active) {
 }
 
 .cart__actions {
-	margin-top: 2rem;
-	display: -ms-flexbox;
-	display: flex;
-	-ms-flex-pack: justify;
-	justify-content: space-between
+    margin-top: 2rem;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    flex-direction: row-reverse;
 }
 
 .cart__coupon-form {
