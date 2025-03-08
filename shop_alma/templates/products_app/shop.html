@@ -38,7 +38,7 @@
            
                 <div class="block-categories__list">
                     
-                    {% for product in product_all %}
+                      {% for product in product_all %}
                     <div class="col-lg-3 col-md-6 align-self-center mb-30 col-md-6 adv">
                       <div class="item img_hover">
                         <div class="thumb">
@@ -50,8 +50,9 @@
                           
                         </div>
                         <div class="cart_product">
-                            <div><a href="#"> جزئیات محصول </a></div>
-                            <div ><a href="product-details.html"><span class="buy_content"><i class="fa fa-shopping-bag"></i></span></a></div>
+                            <div><a href="{{product.get_absolute_url}}"> جزئیات محصول </a></div>
+                            <div >
+                            <button type="button" onclick="add_to_shop_cart({{product.id}},1)"><span class="a-icon"><i class="fa fa-shopping-bag"></i></span></button></div>   
                         </div>
                       </div>
                     </div>

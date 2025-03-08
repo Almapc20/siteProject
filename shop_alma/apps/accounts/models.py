@@ -82,7 +82,7 @@ class Customer(models.Model):
     file_upload=FileUpload('images','customer')
     image_name=models.ImageField(upload_to=file_upload.upload_to,verbose_name="تصویر پروفایل",null=True,blank=True)
 
-    def __str__(self):
+    def __str__(self): 
         return f"{self.user}"
 
     class Meta:

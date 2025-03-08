@@ -3,7 +3,17 @@ from django.views import View
 from .shop_cart import ShopCart
 from apps.products.models import Product
 from django.http import HttpResponse
-
+from django.contrib.auth.mixins import LoginRequiredMixin
+from apps.accounts.models import Customer
+from .models import Order,OrderDetail
+# from .forms import OrderForm
+from django.core.exceptions import ObjectDoesNotExist
+# from apps.discounts.forms import CouponForm
+# from apps.discounts.models import Coupon
+from django.db.models import Q
+from datetime import datetime
+from django.contrib import messages
+import utils
 #============================================================================
 class ShopCartView(View):
     def get(self, request, *args, **kwargs):
@@ -59,3 +69,37 @@ def update_shop_cart(request):
 def status_of_shop_cart(request):
     shop_cart=ShopCart(request)
     return HttpResponse(shop_cart.count)
+# ===============================================================================
+class CreateOrderView(LoginRequiredMixin,View):
+    def get(self,request):
+        
+        try:
+            customer=Customer.objects.get(user=request.user)
+        except ObjectDoesNotExist:
+            customer=Customer.objects.create(user=request.user)
+            
+        order=Order.objects.create(customer=customer)
+        shop_cart=ShopCart(request)
+        for item in shop_cart:
+            OrderDetail.objects.create(
+                order=order,
+                product=item['product'],
+                price=item['price'],
+                qty=item['qty']
+            )
+        return redirect('orders:checkout_order',order.id)
+    
+# ===============================================================================================
+class CheakoutOrderView(LoginRequiredMixin,View):
+    def get(self,request,order_id):
+        user=request.user
+        customer=get_object_or_404(Customer,user=user)
+        shop_cart=ShopCart(request)
+        order=get_object_or_404(Order,id=order_id) 
+        total_price=shop_cart.calc_total_price()
+        delivery=25000
+        if total_price>500000:
+            delivery=0
+        tax=0.09*total_price
+        order_final_price=total_price+delivery+tax
+        
