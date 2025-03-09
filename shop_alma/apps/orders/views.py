@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from apps.accounts.models import Customer
 from .models import Order,OrderDetail
-# from .forms import OrderForm
+from .forms import OrderForm
 from django.core.exceptions import ObjectDoesNotExist
 # from apps.discounts.forms import CouponForm
 # from apps.discounts.models import Coupon
@@ -102,4 +102,19 @@ class CheakoutOrderView(LoginRequiredMixin,View):
             delivery=0
         tax=0.09*total_price
         order_final_price=total_price+delivery+tax
+        
+        form=OrderForm()
+        # form_coupon = CouponForm() 
+
+        context={
+            'shop_cart':shop_cart,
+            'total_price':total_price,
+            'delivery':delivery,
+            'tax':tax,
+            'order_final_price':order_final_price,
+            # 'order':order,
+            'form':form,
+            # 'form_coupon' : form_coupon
+        }
+        return render(request,'orders_app/checkout.html',context)
         

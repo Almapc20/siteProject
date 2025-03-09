@@ -35,36 +35,36 @@
 						</div>
 						<div class="col-12 col-lg-6 col-xl-7">
 							<div class="card mb-lg-0">
-							<form action="{% url 'orders:checkout_order' order_id=order.id %}" method="post">
+							<form action="" method="post">
 								<div class="card-body">
 									<h3 class="card-title">جزئیات پرداخت</h3>
 										{% csrf_token %}
 									<div class="form-row">
 										<div class="form-group col-md-6">
-											<label for="checkout-first-name">نام</label>
+											<label for="checkout-first-name"></label>
 											{{form.name}}
 										</div>
 										<div class="form-group col-md-6">
-											<label for="checkout-last-name">نام خانوادگی</label>
+											<label for="checkout-last-name"></label>
 											{{form.family}}
 										</div>
 									</div>
 									<div class="form-row">
 										<div class="form-group col-md-6">
-											<label for="checkout-email"> ایمیل</label>
+											<label for="checkout-email"></label>
 											{{form.email}}
 										</div>
 										<div class="form-group col-md-6">
-											<label for="checkout-phone">تلفن</label>
+											<label for="checkout-phone"></label>
 											{{form.phone_number}}
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="checkout-street-address">آدرس </label>
+										<label for="checkout-street-address"></label>
 										{{form.address}}
 									</div>
 									<div class="form-group">
-										<label for="checkout-comment">توضیحات سفارش <span class="text-muted">(اختیاری)</span></label>
+										<label for="checkout-comment"></label>
 										{{form.description}}
 									</div>
 									<div class="form-group">
@@ -133,9 +133,9 @@
 									
 									
 
-									<form action="{% url 'orders:applay_coupon' order_id=order.id %}" method="post" style="display: flex; justify-content:center;">
+									<form action="" method="post" style="display: flex; justify-content:center;">
 										{% csrf_token %}
-										{{form_coupon}}
+										{% comment %} {{form_coupon}} {% endcomment %}
 									<button type="submit" class="btn btn-primary">اعمال کد تخفیف</button>
 									</form>
 
