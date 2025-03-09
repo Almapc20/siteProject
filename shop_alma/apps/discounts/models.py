@@ -39,9 +39,3 @@ class DiscountBasketDetails(models.Model):
     class Meta:
         verbose_name = 'جزئیات سبد خرید'
         verbose_name_plural = 'ModelNames'
-
-
-
-
-
-#------------------------------------------------------------------------------------------------
