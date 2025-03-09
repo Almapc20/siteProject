@@ -35,7 +35,7 @@
 						</div>
 						<div class="col-12 col-lg-6 col-xl-7">
 							<div class="card mb-lg-0">
-							<form action="" method="post">
+							<form action="" method="">
 								<div class="card-body">
 									<h3 class="card-title">جزئیات پرداخت</h3>
 										{% csrf_token %}
@@ -108,7 +108,7 @@
 												<td> {{item.qty}} </td>
 											
 											
-												<td> {{item.total_price}} </td>
+												<td> {{item.total_price|intcomma}} </td>
 											</tr>
 											{% endfor %}
 											
