@@ -1,6 +1,6 @@
 from django.db import models
-from apps.accounts.models import Customer
 from apps.products.models import Product
+from apps.accounts.models import Customer
 from django.utils import timezone 
 import uuid 
 import utils
