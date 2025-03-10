@@ -5,8 +5,8 @@ from apps.products.models import Product
 from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from apps.accounts.models import Customer
-from .models import Order,OrderDetail
-# from .forms import OrderForm
+from .models import Order,OrderDetail,PaymentType
+from .forms import OrderForm
 from django.core.exceptions import ObjectDoesNotExist
 # from apps.discounts.forms import CouponForm
 # from apps.discounts.models import Coupon
@@ -78,7 +78,7 @@ class CreateOrderView(LoginRequiredMixin,View):
         except ObjectDoesNotExist:
             customer=Customer.objects.create(user=request.user)
             
-        order=Order.objects.create(customer=customer)
+        order=Order.objects.create(customer=customer,payment_type=get_object_or_404(PaymentType,id=1))
         shop_cart=ShopCart(request)
         for item in shop_cart:
             OrderDetail.objects.create(
@@ -102,4 +102,30 @@ class CheakoutOrderView(LoginRequiredMixin,View):
             delivery=0
         tax=0.09*total_price
         order_final_price=total_price+delivery+tax
+        
+        data={
+            'name':user.name,
+            'family':user.family,
+            'email':user.email,
+            'phone_number':customer.phone_number,
+            'address':customer.address,
+            'description':order.description,
+            'payment_type':order.payment_type
+        }
+        
+        form=OrderForm(data)
+        form=OrderForm()
+        # form_coupon = CouponForm() 
+
+        context={
+            'shop_cart':shop_cart,
+            'total_price':total_price,
+            'delivery':delivery,
+            'tax':tax,
+            'order_final_price':order_final_price,
+            # 'order':order,
+            'form':form,
+            # 'form_coupon' : form_coupon
+        }
+        return render(request,'orders_app/checkout.html',context)
         

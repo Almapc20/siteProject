@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'apps.accounts.apps.AccountsConfig',
     'apps.products.apps.ProductsConfig',
     'apps.orders.apps.OrdersConfig',
-    # 'apps.discounts.apps.DiscountsConfig',
+    'apps.discounts.apps.DiscountsConfig',
     
     #====== ckeditor ================
     'ckeditor',
