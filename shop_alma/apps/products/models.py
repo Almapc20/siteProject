@@ -83,23 +83,23 @@ class Product(models.Model):
         return reverse("products:product_details", kwargs={"slug": self.slug})
     
     
-    #قیمت با تخفیف کالا
-    # def get_price_by_discount(self):
-    #     list1=[]
-    #     for dbd in self.discount_basket_details2.all():
-    #         if (dbd.discount_basket.is_active == True and 
-    #             dbd.discount_basket.start_date <= datetime.now() and 
-    #             datetime.now() <= dbd.discount_basket.end_date):
-    #             list1.append(dbd.discount_basket.discount)
-    #     discount=0
-    #     if(len(list1)>0):
-    #         discount=max(list1)
+    #قیمت با تخفیف کالا 
+    def get_price_by_discount(self):
+        list1=[]
+        for dbd in self.discount_basket_details2.all():
+            if (dbd.discount_basket.is_active == True and 
+                dbd.discount_basket.start_date <= datetime.now() and 
+                datetime.now() <= dbd.discount_basket.end_date):
+                list1.append(dbd.discount_basket.discount)
+        discount=0
+        if(len(list1)>0):
+            discount=max(list1)
     
-    #     return self.price-(self.price*discount/100)
+        return self.price-(self.price*discount/100)
     
-    # class Meta:
-    #     verbose_name= " کالا"
-    #     verbose_name_plural= "کالا ها"
+    class Meta:
+        verbose_name= " کالا"
+        verbose_name_plural= "کالا ها"
     
 #-----------------------------------------------------------------------------------
 class FeatureValue(models.Model):

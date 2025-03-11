@@ -133,9 +133,9 @@
 									
 									
 
-									<form action="" method="post" style="display: flex; justify-content:center;">
+									<form action="{% url 'orders:applay_coupon' order_id=order.id %}" method="post" style="display: flex; justify-content:center;">
 										{% csrf_token %}
-										{% comment %} {{form_coupon}} {% endcomment %}
+										{{form_coupon}}
 									<button type="submit" class="btn btn-primary">اعمال کد تخفیف</button>
 									</form>
 
