@@ -21,11 +21,23 @@ class Order(models.Model):
     update_date= models.DateField(auto_now= True, verbose_name= "تاریخ ویرایش سفارش")
     is_finally= models.BooleanField(default= False, verbose_name= "نهایی شده")
     order_code= models.UUIDField(unique= True, default= uuid.uuid4, editable= False, verbose_name= "کد تولیدی برای سفارش")
-    # discount=models.IntegerField(blank=True,null=True,default=0,verbose_name="تخفیف روی فاکتور")
-    discount= models.IntegerField(blank= True, null= True, default= None, verbose_name= "تخفیف روی فاکتور")
+    discount=models.IntegerField(blank=True,null=True,default=0,verbose_name="تخفیف روی فاکتور")
+    # discount= models.IntegerField(blank= True, null= True, default= None, verbose_name= "تخفیف روی فاکتور")
     description= models.TextField(blank= True, null= True, verbose_name= 'توضیحات')
     payment_type= models.ForeignKey(PaymentType, default= None, on_delete= models.CASCADE, null= True, blank= True, related_name= 'payment_types', verbose_name= 'نوع پرداخت')    
     
+    
+    # def get_order_total_price(self):
+    #     sum=0 
+    #     for item in self.orders_details1.all():
+    #         sum+=item.product.get_price_by_discount()*item.qty 
+    #     order_final_price,delivery,tax=utils.price_by_delivery_tax(sum,self.discount or 0  )
+    #     return int(order_final_price*10)
+    
+    def get_order_total_price(self):
+        total_price = sum((item.product.get_price_by_discount() or 0) * item.qty for item in self.orders_details1.all())
+        order_final_price, delivery, tax = utils.price_by_delivery_tax(total_price, self.discount or 0)
+        return int(order_final_price * 10)
     
     
     def __str__(self):

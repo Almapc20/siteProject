@@ -85,8 +85,8 @@ class Product(models.Model):
         list1=[]
         for dbd in self.discount_basket_details2.all():      
             if (dbd.discount_basket.is_active == True and
-                dbd.discount_basket.start_date<= now and
-                now<= dbd.discount_basket.end_date):
+                dbd.discount_basket.start_date<= datetime.now() and
+                datetime.now() <= dbd.discount_basket.end_date):
                 list1.append(dbd.discount_basket.discount)
         discount= 0
         if (len(list1)> 0):
