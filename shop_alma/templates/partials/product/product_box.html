@@ -68,17 +68,14 @@
         <div class="product-card__actions">
             <div class="product-card__availability">موجودی: <span class="text-success">موجود در انبار</span></div>
             {% if product.price > product.get_price_by_discount %}
-            <div class="product-card-price">
-            <del>قیمت : {{product.price}} تومان</del>
-        </div>
-        <div class="product-card-price">
-            قیمت : {{product.get_price_by_discount}} تومان
-        </div>
-        {% else %}
-            <div class="product-card-price">
-            قیمت : {{product.price}} تومان
-            </div>
-        {% endif %}
+                  
+                   <span class="price"><del>قیمت : {{product.price|intcomma}} تومان</del></span><br>
+                   <span>قیمت : {{product.get_price_by_discount|intcomma}} تومان</span>
+                {% else %}
+                  <div class="product-card-price">
+                  <span class="price">{{product.price}}</span>
+                  </div>
+                {% endif %}
             <div class="product-card__buttons">
                 {% if product.get_number_in_warehouse > 0 %}
                 <button class="btn btn-primary product-card__addtocart" type="button"

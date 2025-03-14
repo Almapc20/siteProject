@@ -38,12 +38,19 @@
            
                 <div class="block-categories__list">
                     
-                      {% for product in product_all %}
+                    {% for product in product_all %}
                     <div class="col-lg-3 col-md-6 align-self-center mb-30 col-md-6 adv">
                       <div class="item img_hover">
                         <div class="thumb">
                           <a href="{{product.get_absolute_url}}"><img src="{{media_url}}{{product.image_name}}"alt=""></a>
-                          <span class="price">{{ product.price |intcomma}} تومان</span>
+                          {% if product.price > product.get_price_by_discount %}
+                              <span class="price"><del>قیمت : {{product.price|intcomma}} تومان</del></span><br>
+                              <span>قیمت : {{product.get_price_by_discount|intcomma}} تومان</span>
+                          {% else %}
+                            <div class="product-card-price">
+                            <span class="price">{{product.price}}</span>
+                            </div>
+                          {% endif %}
                         </div>
                         <div class="down-content min_max_height">
                           <span class="category">{{ product.product_name}}</span>
