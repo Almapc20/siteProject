@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'apps.orders.apps.OrdersConfig',
     'apps.discounts.apps.DiscountsConfig',
     
+    
     #====== ckeditor ================
     'ckeditor',
     'ckeditor_uploader',
@@ -57,14 +58,6 @@ INSTALLED_APPS = [
     
     #========================django-filter===================
     'django_filters',
-    
-    #======================== Google Login ===================
-    # 'django.contrib.sites',  # این خط را اضافه کنید
-    # 'allauth',
-    # 'allauth.account',
-    # 'allauth.socialaccount',
-    # 'allauth.socialaccount.providers.google',
-    
 ]
 
 MIDDLEWARE = [
@@ -75,9 +68,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    # google login
-    # 'allauth.account.middleware.AccountMiddleware', 
 ]
 
 ROOT_URLCONF = 'shop.urls'
@@ -165,41 +155,7 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'media/')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-#================= My User Admin Models For Login ==========================================================
 AUTH_USER_MODEL="accounts.CustomUser"
-
-#================= Google For Login ==========================================================
-# AUTHENTICATION_BACKENDS = [
-#        'django.contrib.auth.backends.ModelBackend',   # default backend
-#        'allauth.account.auth_backends.AuthenticationBackend', # for google
-# ]
-
-# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-# EMAIL_FILE_PATH = "django.core.mail.backends.console.EmailBackend"  
-
-
-# SOCIALACCOUNT_PROVIDERS = {
-#     'google': {
-#         'app': {
-#         'client_id': 'https://1039227494071-no8nhkj1b2arouk2k91qt31rdsbjtai3.apps.googleusercontent.com',
-#         'secret': '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',
-#         'key':'',
-#         }
-#     }
-# }
-
-LOGIN_URL='login'
-LOGOUT_URL='logout'
-LOGIN_REDIRECT_URL='main'
-ACCOUNT_LOGOUT_REDIRECT_URL='login'
-
-
-# SITE_ID = 1
-
-#     LOGIN_REDIRECT_URL = '/'  # آدرس بعد از ورود موفق
-#     LOGOUT_REDIRECT_URL = '/'  # آدرس بعد از خروج
-
 
 #=================CKEDITOR==========================================================
 CKEDITOR_UPLOAD_PATH="uploads/"

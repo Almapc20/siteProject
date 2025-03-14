@@ -34,9 +34,9 @@
           <h4>برند: <a href=""> {{product.brand}} </a></h4>
           <span class="price"> قیمت : {{product.price|intcomma}} تومان </span>
           <p class="card-text">{{product.summery_description}}</p>
-          <form id="qty" action="#">	
-            <input id="product-quantity" class="form-control form-control-lg" type="number" min="1" value="1">
-            <button type="button" onclick="add_to_shop_cart({{product.id}},0)"><i class="fa fa-shopping-bag"></i><span class="a-icon"> افزودن به سبد خرید </span></button>
+          <form id="qty" action="#">
+            <input type="qty" class="form-control" id="1" aria-describedby="quantity" placeholder="1">
+            <button type="submit" onclick="aad_to_shop_cart({{product.id}},1)"><i class="fa fa-shopping-bag"></i><span class="a-icon"> افزودن به سبد خرید </span></button>
           </form>
           <ul>
             

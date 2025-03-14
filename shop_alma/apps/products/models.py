@@ -8,15 +8,12 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from ckeditor.fields import RichTextField
 from datetime import datetime
 
-#------------------------------------------------------------------------------------------------------- 
-
-
-
+# ------------------------------------------------------------------------------------------------------------
 class Brand(models.Model):
-    brand_title= models.CharField(max_length=100, verbose_name="نام برند")
+    brand_title= models.CharField(max_length= 100, verbose_name= "نام برند")
     file_uplaod= FileUpload('images', 'brand')
-    slug= models.SlugField(max_length=200, null=True)
-    image_name= models.ImageField(upload_to=file_uplaod.upload_to, verbose_name="تصویر گروه کالا")
+    slug= models.SlugField(max_length= 200, null=True)
+    image_name= models.ImageField(upload_to= file_uplaod.upload_to, verbose_name= "تصویر گروه کالا")
     
     def __str__(self) -> str:
         return self.brand_title
@@ -48,8 +45,8 @@ class ProductGroup(models.Model):
     
 #-----------------------------------------------------------------------------------
 class Feature(models.Model):
-    feature_name= models.CharField(max_length=100, verbose_name="نام ویژگی")    
-    product_group= models.ManyToManyField(ProductGroup, verbose_name="گروه کالا",related_name="feature_of_groups")
+    feature_name= models.CharField(max_length= 100, verbose_name= "نام ویژگی")    
+    product_group= models.ManyToManyField(ProductGroup, verbose_name= "گروه کالا", related_name= "feature_of_groups")
     
     def __str__(self) -> str:
         return self.feature_name
@@ -60,21 +57,21 @@ class Feature(models.Model):
     
 #-----------------------------------------------------------------------------------
 class Product(models.Model):
-    product_name= models.CharField(max_length=500, verbose_name="نام کالا")
-    summery_description= models.TextField(default="", blank=True, null=True, verbose_name="توضیحات کالا")    
+    product_name= models.CharField(max_length= 500, verbose_name= "نام کالا")
+    summery_description= models.TextField(default= "", blank= True, null= True, verbose_name= "توضیحات کالا")    
     description= RichTextUploadingField(config_name= 'special', blank= True)    
     # description=CKEditor5Field('Text', config_name='extends', blank= True)    
     file_uplaod= FileUpload('images', 'product')
-    image_name= models.ImageField(upload_to=file_uplaod.upload_to, verbose_name="تصویر کالا")
-    price= models.PositiveIntegerField(default=0, verbose_name="قیمت کالا")
-    product_group= models.ManyToManyField(ProductGroup,verbose_name="گروه کالا", related_name="product_of_groups")
-    features= models.ManyToManyField(Feature, through="ProductFeature")
-    brand= models.ForeignKey(Brand, verbose_name="برنند کالا", on_delete=models.CASCADE, null=True, related_name="brands")
-    is_active= models.BooleanField(default=True,blank=True, verbose_name="وضعیت فعال / غیر فعال")
-    slug= models.SlugField(max_length=200, null=True)
-    register_date= models.DateTimeField(auto_now_add=True, verbose_name="تاریخ درج", )
-    published_date= models.DateTimeField(default=timezone.now, verbose_name="تاریخ انتشار")
-    update_date= models.DateTimeField(auto_now=True, verbose_name="تاریخ آخرین بروزرسانی")
+    image_name= models.ImageField(upload_to= file_uplaod.upload_to, verbose_name= "تصویر کالا")
+    price= models.PositiveIntegerField(default= 0, verbose_name= "قیمت کالا")
+    product_group= models.ManyToManyField(ProductGroup, verbose_name= "گروه کالا", related_name= "product_of_groups")
+    features= models.ManyToManyField(Feature, through= "ProductFeature")
+    brand= models.ForeignKey(Brand, verbose_name= "برنند کالا", on_delete= models.CASCADE, null= True, related_name= "brands")
+    is_active= models.BooleanField(default= True, blank= True, verbose_name= "وضعیت فعال / غیر فعال")
+    slug= models.SlugField(max_length= 200, null= True)
+    register_date= models.DateTimeField(auto_now_add= True, verbose_name= "تاریخ درج", )
+    published_date= models.DateTimeField(default= timezone.now, verbose_name= "تاریخ انتشار")
+    update_date= models.DateTimeField(auto_now= True, verbose_name= "تاریخ آخرین بروزرسانی")
     
     def __str__(self) -> str:
         return self.product_name
@@ -82,20 +79,21 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse("products:product_details", kwargs={"slug": self.slug})
     
-    
-    #قیمت با تخفیف کالا 
+    # --------- قیمت با تخفیف کالا --------------------------------------------------------------------------------
     def get_price_by_discount(self):
+        now = timezone.now()
         list1=[]
-        for dbd in self.discount_basket_details2.all():
-            if (dbd.discount_basket.is_active == True and 
-                dbd.discount_basket.start_date <= datetime.now() and 
-                datetime.now() <= dbd.discount_basket.end_date):
+        for dbd in self.discount_basket_details2.all():      
+            if (dbd.discount_basket.is_active == True and
+                dbd.discount_basket.start_date<= now and
+                now<= dbd.discount_basket.end_date):
                 list1.append(dbd.discount_basket.discount)
-        discount=0
-        if(len(list1)>0):
+        discount= 0
+        if (len(list1)> 0):
             discount=max(list1)
-    
-        return self.price-(self.price*discount/100)
+        return int(self.price-(self.price* discount/ 100))        
+        
+
     
     class Meta:
         verbose_name= " کالا"
@@ -103,8 +101,8 @@ class Product(models.Model):
     
 #-----------------------------------------------------------------------------------
 class FeatureValue(models.Model):
-    value_title= models.CharField(max_length=100, verbose_name="عنوان مقدار")
-    feature= models.ForeignKey(Feature, on_delete=models.CASCADE, blank=True, null=True, verbose_name="ویژگی", related_name="feature_value")
+    value_title= models.CharField(max_length= 100, verbose_name= "عنوان مقدار")
+    feature= models.ForeignKey(Feature, on_delete=models.CASCADE, blank= True, null= True, verbose_name= "ویژگی", related_name= "feature_value")
     
     def __str__(self) -> str:
         return f"{self.value_title}"

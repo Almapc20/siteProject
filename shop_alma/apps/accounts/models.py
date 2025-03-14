@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager, UserManager
 from django.utils import timezone
 from utils import FileUpload
+
 #-----------------------------------------------------------------------------------------
 class CustomUserManager(BaseUserManager):
         def create_user(self, mobile_number, email="", name="", family="", active_code=None, gender=None, password=None):
@@ -35,7 +36,6 @@ class CustomUserManager(BaseUserManager):
             user.is_superuser= True
             user.save(using= self._db)
             return user
-        #--------------------------------------------------------------------------------------    
 #---------------------------------------------------------------------------------------------
 class CustomUser(AbstractBaseUser, PermissionsMixin):
         mobile_number= models.CharField(max_length=11, unique=True, verbose_name="شماره موبایل")
@@ -72,19 +72,18 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         @property
         def is_staff(self):
             return self.is_admin
-        
-#=========================================================================================================
 
+#--------------------------------------------------------------------------------------    
 class Customer(models.Model):
-    user=models.OneToOneField(CustomUser,on_delete=models.CASCADE,primary_key=True)
-    phone_number=models.CharField(max_length=11,null=True,blank=True)
-    address=models.TextField(null=True,blank=True)
-    file_upload=FileUpload('images','customer')
-    image_name=models.ImageField(upload_to=file_upload.upload_to,verbose_name="تصویر پروفایل",null=True,blank=True)
+    user= models.OneToOneField(CustomUser, on_delete=models.CASCADE, primary_key= True)
+    phone_number= models.CharField(max_length=11, null= True, blank= True)
+    address=models.TextField(null= True, blank= True)
+    file_upload=FileUpload('images', 'customer')
+    image_name=models.ImageField(upload_to= file_upload.upload_to, verbose_name= "تصویر پروفایل", null= True, blank= True)
 
     def __str__(self): 
         return f"{self.user}"
 
     class Meta:
-        verbose_name="مشتری"
-        verbose_name_plural="مشتریان"
+        verbose_name= "مشتری"
+        verbose_name_plural= "مشتریان"

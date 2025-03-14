@@ -30,7 +30,6 @@
             <div class="thumb">
               <a href="{{product.get_absolute_url}}"><img src="{{media_url}}{{product.image_name}}" alt=""></a>
                 {% if product.price > product.get_price_by_discount %}
-                  
                    <span class="price"><del>قیمت : {{product.price|intcomma}} تومان</del></span><br>
                    <span>قیمت : {{product.get_price_by_discount|intcomma}} تومان</span>
                 {% else %}

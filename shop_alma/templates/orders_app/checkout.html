@@ -9,24 +9,9 @@
 
 
 <!-- site__body -->
+{% include "partials/banner/banner_box.html" with type=2 %}
 		<div class="site__body">
-			<div class="page-header">
-				<div class="page-header__container container">
-					<div class="page-header__breadcrumb">
-						<nav aria-label="breadcrumb">
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="index.html">خانه</a>
-									/
-								</li>
-								
-								<li class="breadcrumb-item active" aria-current="page">پرداخت</li>
-							</ol>
-						</nav>
-					</div>
-					<div class="page-header__title">
-						<h1>پرداخت</h1></div>
-				</div>
-			</div>
+		
 			<div class="checkout block">
 				<div class="container">
 					<div class="row">
@@ -133,9 +118,9 @@
 									
 									
 
-									<form action="{% url 'orders:applay_coupon' order_id=order.id %}" method="post" style="display: flex; justify-content:center;">
+									<form action="" method="post" style="display: flex; justify-content:center;">
 										{% csrf_token %}
-										{{form_coupon}}
+										{% comment %} {{form_coupon}} {% endcomment %}
 									<button type="submit" class="btn btn-primary">اعمال کد تخفیف</button>
 									</form>
 
