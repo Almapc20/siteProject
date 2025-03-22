@@ -11,7 +11,7 @@ urlpatterns = [
     path('show_shop_cart/',views.show_shop_cart,name='show_shop_cart'),
     path('create_order/',views.CreateOrderView.as_view(),name='create_order'),
     path('checkout_order/<int:order_id>/',views.CheakoutOrderView.as_view(),name='checkout_order'),
-    # path('applay_coupon/<int:order_id>/',views.ApplyCoupon.as_view(),name="applay_coupon"),
+    path('applay_coupon/<int:order_id>/',views.ApplyCoupon.as_view(),name="applay_coupon"),
 
 ]
 
