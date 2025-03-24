@@ -7,6 +7,7 @@ from django.urls import reverse
 from ckeditor_uploader.fields import RichTextUploadingField
 from ckeditor.fields import RichTextField
 from datetime import datetime
+from django.db.models import Sum,Avg
 
 # ------------------------------------------------------------------------------------------------------------
 class Brand(models.Model):
@@ -93,11 +94,23 @@ class Product(models.Model):
             discount=max(list1)
         return int(self.price-(self.price* discount/ 100))        
         
-
+    # تعداد موجودی کالا در انبار
+    def get_number_in_warehouse(self):
+        sum1= self.warehouse_products.filter(warehouse_type_id= 1).aggregate(Sum('qty'))
+        sum2= self.warehouse_products.filter(warehouse_type_id= 2).aggregate(Sum('qty'))
+        input= 0
+        if sum1['qty__sum']!= None:
+            input=sum1['qty__sum']
+        output= 0
+        if sum2['qty__sum']!= None:
+            output= sum2['qty__sum']
+        return input- output
     
     class Meta:
         verbose_name= " کالا"
         verbose_name_plural= "کالا ها"
+    
+    
     
 #-----------------------------------------------------------------------------------
 class FeatureValue(models.Model):

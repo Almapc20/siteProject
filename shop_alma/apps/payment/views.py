@@ -8,6 +8,19 @@
 # import requests
 # import json
 # from django.http import HttpResponse 
+
+from django.shortcuts import render,redirect
+from django .views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
+from apps.orders.models import Order
+import requests
+import json
+from django.core.exceptions import ObjectDoesNotExist
+from .models import Payment
+from apps.accounts.models import Customer
+from apps.warehouses.models import Warehouse, WarehousesType
+from django.http import HttpResponse 
+
 #-------------------------------------------------------------
 # MERCHANT='XXXXX-XXX-XXXX-XXX-XXX-XXX-XXX-XXX'
 # ZP_API_REQUEST = f"https://api.zarinpal.com/pg/v4/payment/request.json"
@@ -119,3 +132,36 @@
 # #---------------------------------------------------------------------------------------
 # def show_verify_message(request,message):
 #     return render(request,"payments/verify_message.html",{'message':message})
+
+#=================================================================================================
+class SpotPaymentVerifyView(LoginRequiredMixin,View):
+      def get(self, request,order_id):              
+            description="پرداخت از طریق پرداخت در محل انجام می شود"
+            try:           
+                order=Order.objects.get(id= order_id)
+                payment= Payment.objects.create(
+                order= order,
+                customer= Customer.objects.get(user= request.user),
+                amount= order.get_order_total_price(),
+                description= description,
+                )
+                payment.save()
+
+                order=Order.objects.get(id= order_id)
+                order.is_finaly= True
+                order.save()
+                payment.is_finaly= True
+                payment.save()    
+                  
+                for item in order.orders_details1.all():
+                    Warehouse.objects.create(
+                        warehouse_type= WarehousesType.objects.get(id= 2),
+                        user_registered= request.user,
+                        product= item.product,
+                        qty= item.qty,
+                        price= item.price
+                    )
+                return redirect('main:index')
+
+            except:
+                return redirect('orders:checkout_order', order_id)

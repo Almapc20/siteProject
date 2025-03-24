@@ -12,13 +12,13 @@
             <div class="col-lg-6 col-md-6">
           <div class="item">
             <div class="thumb">
-                        <a href="{% url "products:products_of_group" slug=group.slug %}">
+                        <a href='{% url "products:products_of_group" slug=group.slug %}'>
                             <img src="{{media_url}}{{group.image_name}}" style="width: 80px; height: 80px;" alt="">
                         </a>
                    
             </div>
             <div class="down-content">
-              <h5 href="{% url "products:products_of_group" slug=group.slug %}">{{group.group_title}}</h5>
+              <h5 href='{% url "products:products_of_group" slug=group.slug %}'>{{group.group_title}}</h5>
               <a href="">{{group.product_of_groups.all|length}} محصول</a>
               <a href="product-details.html"><i class="fa fa-shopping-bag"><span class="a-icon"> مشاهده محصولات </span></i></a>
             </div>
@@ -26,7 +26,7 @@
         </div>
         
         {% endfor %}
-       <a href="{% url "products:product_groups" %}">همه</a>
+       <a href='{% url "products:product_groups" %}'>همه</a>
       </div>
     </div>
   </div>

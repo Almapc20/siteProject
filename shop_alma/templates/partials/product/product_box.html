@@ -6,21 +6,23 @@
           <div class="item">
             <div class="thumb">
                 <a href="{{product.get_absolute_url}}"><img src="{{media_url}}{{product.image_name}}" alt=""></a>
-                {% if product.price > product.get_price_by_discount %}
-                  
-                   <span class="price"><del>قیمت : {{product.price|intcomma}} تومان</del></span><br>
-                   <span>قیمت : {{product.get_price_by_discount|intcomma}} تومان</span>
-                {% else %}
-                  <div class="product-card-price">
-                  <span class="price">{{product.price}}</span>
-                  </div>
-                {% endif %}
+                    <h3>{{product.get_number_in_warehouse}}</h3>
+                    {% if product.get_number_in_warehouse <= 0 %}
+                        <span style="color:red;">ناموجود </span>
+                    {% else %}   
+                        {% if product.price > product.get_price_by_discount %}
+                            <div class="product-card__prices"><del>{{product.price|intcomma}}  تومان </del></div>
+                            <div class="product-card__prices">{{product.get_price_by_discount|intcomma}}  تومان </div>
+                        {% else %}
+                            <div class="product-card__prices">{{product.price|intcomma}}  تومان </div>
+                        {% endif %}
+                    {% endif %}
                 
             </div>
             <div class="down-content">
-              
-                <h4>{{product.product_name}}</h4>
-                <button class= "button_basket" href="" onclick="add_to_shop_cart({{product.id}},1)"><i class="fa fa-shopping-bag"><span class="a-icon"> افزودن به سبد خرید </span></i></button>
+              {% if product.get_number_in_warehouse > 0 %}
+                    <button class= "button_basket" href="" onclick="add_to_shop_cart({{product.id}},1)"><i class="fa fa-shopping-bag"><span class="a-icon"> افزودن به سبد خرید </span></i></button>
+              {% endif %}
             </div>
           </div>
         </div>
@@ -29,14 +31,24 @@
           <div class="item">
             <div class="thumb">
               <a href="{{product.get_absolute_url}}"><img src="{{media_url}}{{product.image_name}}" alt=""></a>
-                {% if product.price > product.get_price_by_discount %}
+                {% if product.get_number_in_warehouse <= 0 %}
+                        <span style="color:red;">ناموجود </span>
+                    {% else %}   
+                        {% if product.price > product.get_price_by_discount %}
+                            <div class="product-card__prices"><del>{{product.price|intcomma}}  تومان </del></div>
+                            <div class="product-card__prices">{{product.get_price_by_discount|intcomma}}  تومان </div>
+                        {% else %}
+                            <div class="product-card__prices">{{product.price|intcomma}}  تومان </div>
+                        {% endif %}                
+                    {% endif %}      
+                {% comment %} {% if product.price > product.get_price_by_discount %}
                    <span class="price"><del>قیمت : {{product.price|intcomma}} تومان</del></span><br>
                    <span>قیمت : {{product.get_price_by_discount|intcomma}} تومان</span>
                 {% else %}
                   <div class="product-card-price">
                   <span class="price">{{product.price}}</span>
                   </div>
-                {% endif %}
+                {% endif %} {% endcomment %}
               <span class="position-absolute top-0.57 start-99.5 translate-middle badge rounded-pill bg-danger">
               جدید
               
@@ -44,7 +56,10 @@
             </div>
             <div class="down-content">
               <span class="category">{{product.product_name}}</span>
-              <button class= "button_basket" href="" onclick="add_to_shop_cart({{product.id}},1)"><i class="fa fa-shopping-bag"><span class="a-icon"> افزودن به سبد خرید </span></i></button>            </div>
+              {% if product.get_number_in_warehouse > 0 %}
+                    <button class= "button_basket" href="" onclick="add_to_shop_cart({{product.id}},1)"><i class="fa fa-shopping-bag"><span class="a-icon"> افزودن به سبد خرید </span></i></button>
+              {% endif %}
+            </div>
           </div>
         </div>
 
