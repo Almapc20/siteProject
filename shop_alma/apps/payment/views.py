@@ -28,42 +28,42 @@ from django.http import HttpResponse
 # ZP_API_STARTPAY = f"https://www.zarinpal.com/pg/StartPay/{{authority}}"
 
 # CallbackURL = 'http://127.0.0.1:8000/payments/verify/' 
-#------------------------------------------------------------
+# #------------------------------------------------------------
 # class ZarinpalPaymentView(LoginRequiredMixin,View):
-    #     def get(self,request,order_id):
+#         def get(self,request,order_id):
 #         try:
-#             description='پرداخت از طریق درگاه زرین پال انجام می شود'
-#             order=Order.objects.get(id=order_id)
-            #   payment=Payment.object.create(
-            #       description="پرداخت از طریق درگاه زرین پال انجام میشود."
-            #       order=order,
-            #       customer=Customer.objects.get(user=request.user),
-            #       amount=order.get_order_total_price(),
-            #       "description": description,
-            #   )
-#               payment.save()
-#               
-#               request.session['payment_session']={
+#                 description='پرداخت از طریق درگاه زرین پال انجام می شود'
+#                 order=Order.objects.get(id=order_id)
+#                 payment=Payment.object.create(
+#                     description="پرداخت از طریق درگاه زرین پال انجام میشود."
+#                     order=order,
+#                     customer=Customer.objects.get(user=request.user),
+#                     amount=order.get_order_total_price(),
+#                     "description": description,
+#                 )
+#                 payment.save()
+              
+#                 request.session['payment_session']={
 #                   'order_id':order.id,
 #                   'payment_id':payment.id
-# }
-#             user=request.user 
-#             req_data = {
+#                 }
+#                 user=request.user 
+#                 req_data = {
 #                 "MerchantID": MERCHANT,
 #                 "amount": order.get_order_total_price(),
 #                 "description": description,
 #                 "CallbackURL": CallbackURL,
 #                 "metadate":{"mobile":user.mobile_number,"email":user.email}
-#             }
-#             req_header={"accept":"application/json","content_type":"application/json"}
-#             req=request.post(url=ZP_API_REQUEST,data=json.dumps(req_data),headers=req_header)
-#             authority=req.json()['data']['authority']
-#             if len(req.json()['errors'])==0:
-#                 return redirect(ZP_API_STARTPAY.format(authority=authority))
-#             else:
-#                 e_code=req.json()['errors']['code']
-#                 e_message=req.json()['errors']['message']
-#                 return HttpResponse(f"ERROR code:{e_code}, Error Message:{e_message}")
+#                 }
+#                 req_header={"accept":"application/json","content_type":"application/json"}
+#                 req=request.post(url=ZP_API_REQUEST,data=json.dumps(req_data),headers=req_header)
+#                 authority=req.json()['data']['authority']
+#                 if len(req.json()['errors'])==0:
+#                     return redirect(ZP_API_STARTPAY.format(authority=authority))
+#                 else:
+#                     e_code=req.json()['errors']['code']
+#                     e_message=req.json()['errors']['message']
+#                     return HttpResponse(f"ERROR code:{e_code}, Error Message:{e_message}")
 #         except ObjectDoesNotExist:
 #             raise redirect('orders:checkout_order',order_id)
         
@@ -135,7 +135,7 @@ from django.http import HttpResponse
 
 #=================================================================================================
 class SpotPaymentVerifyView(LoginRequiredMixin,View):
-      def get(self, request,order_id):              
+      def get(self, request, order_id):              
             description="پرداخت از طریق پرداخت در محل انجام می شود"
             try:           
                 order=Order.objects.get(id= order_id)

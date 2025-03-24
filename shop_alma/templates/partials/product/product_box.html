@@ -6,7 +6,7 @@
           <div class="item">
             <div class="thumb">
                 <a href="{{product.get_absolute_url}}"><img src="{{media_url}}{{product.image_name}}" alt=""></a>
-                    <h3>{{product.get_number_in_warehouse}}</h3>
+                    {% comment %} <h3>{{product.get_number_in_warehouse}}</h3> {% endcomment %}
                     {% if product.get_number_in_warehouse <= 0 %}
                         <span style="color:red;">ناموجود </span>
                     {% else %}   

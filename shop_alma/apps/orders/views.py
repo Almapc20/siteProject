@@ -153,7 +153,7 @@ class CheakoutOrderView(LoginRequiredMixin, View):
                 customer.address=cd['address']
                 customer.save()
                 messages.success(request," اطلاعات با موفقیت ثبت شد ",'')
-                return redirect('orders:checkout_order',order_id)                
+                return redirect('payments:spot_payment',order_id)                
             except ObjectDoesNotExist:
                 messages.error(request,"فاکتوری با این مشخصات یافت نشد",'danger')
                 return redirect('orders:checkout_order',order_id)
