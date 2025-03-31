@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'apps.discounts.apps.DiscountsConfig',
     'apps.payment.apps.PaymentConfig',
     'apps.warehouses.apps.WarehousesConfig',
+    'apps.comment_scoring_favorites.apps.CommentScoringFavoritesConfig',
     
     #====== ckeditor ================
     'ckeditor',
@@ -69,6 +70,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # ------------------- local -------------------------------------
+    "middlewares.middlewares.RequestMiddleware",
 ]
 
 ROOT_URLCONF = 'shop.urls'

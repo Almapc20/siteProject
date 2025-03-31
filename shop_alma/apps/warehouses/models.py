@@ -23,7 +23,7 @@ class Warehouse(models.Model):
     register_date= models.DateTimeField(auto_now_add= True, verbose_name= "تاریخ ثبت")
     
     def __str__(self) -> str:
-        return f"{self.Warehouse_type} - {self.product}"
+        return f"{self.warehouse_type} - {self.product}"
     
     class Meta:
         verbose_name= "انبار"

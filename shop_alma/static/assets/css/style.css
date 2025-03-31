@@ -391,9 +391,19 @@ h6 {
 }
 
 .badge {
-	border-radius: 1.5px;
-	font-weight: 500;
-	padding: .25em .5em
+	font-size: .875rem;
+    height: calc(1.875rem + 2px);
+    line-height: 1.25;
+    padding: .375rem 1rem;
+    font-weight: 500;
+	
+}
+.badge-success{
+	background-color: #048b04;
+
+}
+.badge-danger{
+	background-color: #f33;
 }
 
 .block-header {

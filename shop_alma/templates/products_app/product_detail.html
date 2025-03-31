@@ -5,88 +5,245 @@
 جزئیات محصول
 {% endblock title %}
 
-{% block content %}     
+{% block content %}
 
-  <div class="page-heading header-text">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <h3>{{product.product_name}}</h3>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="page-heading header-text">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h3>{{product.product_name}}</h3>
+			</div>
+		</div>
+	</div>
+</div>
 
-  <div class="single-product section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="left-image">
-            <img src="{{media_url}}{{product.image_name}}" class="card-img-top align-items-center" alt="...">
-                    
-                    {% for img in product.gallery_images.all %}
-                        <a href="images/products/product-16-1.jpg" target="_blank">
-                        <img class="" style="height: 5rem; width: 5rem;" src="{{media_url}}{{img.image_name}}" alt=""> </a>
-                    {% endfor %}
-          </div>
-        </div>
-        <div class="col-lg-6 align-self-center">
-          <h4>برند: <a href=""> {{product.brand}} </a></h4>
-          <span class="price"> قیمت : {{product.price|intcomma}} تومان </span>
-          <p class="card-text">{{product.summery_description}}</p>
-          <form id="qty" action="#">
-            <input type="qty" class="form-control" id="1" aria-describedby="quantity" placeholder="1">
-            <button type="submit" onclick="aad_to_shop_cart({{product.id}},1)"><i class="fa fa-shopping-bag"></i><span class="a-icon"> افزودن به سبد خرید </span></button>
-          </form>
-          <ul>
-            
-			{% for feature in product.product_features.all %}
-                        <label>
-                            <input type="radio" name="material">
-                                <span>{{feature.feature}}:{{feature.value}}</span>
-                        </label>
-                        {% endfor %}
-            {% comment %} <li><span>Genre:</span> <a href="#">Action</a>, <a href="#">Team</a>, <a href="#">Single</a></li>
-            <li><span>Multi-tags:</span> <a href="#">War</a>, <a href="#">Battle</a>, <a href="#">Royal</a></li> {% endcomment %}
-          </ul>
-        </div>
-        <div class="col-lg-12">
-          <div class="sep"></div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="container-info">
+	<div class="contain">
 
+		<div class="right-info main-text">
+			<div class="pic-info">
+				<img src="{{media_url}}{{product.image_name}}" class="" alt="...">
 
- <div class="more-info">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="tabs-content">
-            <div class="row">
-              <div class="nav-wrapper ">
-                <ul class="nav nav-tabs" role="tablist">
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">توضیحات</button>
-                  </li>
-                </ul>
-              </div>              
-              <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
-                  <p>{% autoescape off %}
-                    {{product.description}}
-                    {% endautoescape %}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+				{% for img in product.gallery_images.all %}
+				<a href="images/products/product-16-1.jpg" target="_blank">
+					<img class="" style="height: 5rem; width: 5rem;" src="{{media_url}}{{img.image_name}}" alt=""> </a>
+				{% endfor %}
+			</div>
+			<div class="info-title">
+				<h2 class="main-color">ویژگی های محصول</h2>
+				<p>{% autoescape off %}
+					{{product.description}}
+					{% endautoescape %}</p>
+			</div>
+
+		</div>
+
+		<div class="left-info main-text">
+			<h3>برند: <a href=""> {{product.brand}} </a></h3>
+			<p>cho025 : کد کالا</p>
+
+			<ul>
+
+				{% for feature in product.product_features.all %}
+				<label>
+					<input type="radio" name="material">
+					<span>{{feature.feature}}:{{feature.value}}</span>
+				</label>
+				<br>
+				{% endfor %}
+
+			</ul>
+			<span class="price"> قیمت : {{product.price|intcomma}} تومان </span>
+			<div class="info-icon">
+				<i class="fa fa-truck fa-icon"></i>
+				<p>تحویل یک روزه</p>
+			</div>
+
+			<div class="info-icon">
+				<i class="fa fa-money fa-icon"></i>
+				<p>با خرید دو عدد فلش بن تخفیف 50.000 تومانی هدیه بگیرید</p>
+			</div>
+
+			<ul class="product__meta"
+				style="width : 100%; display : flex; justify-content : space-between; padding: 0;">
+				<li style="list-style: none;">برند : <a href=""><span style="color : red;">{{product.brand}}</span></a>
+				</li>
+				<li style="list-style: none; ">تعداد نظرات : <a href=""><span
+							style="color : red;">{{product.comments_product.all|length}}</span></a> نظر</li>
+
+			</ul>
+
+			<div style="display: flex; justify-content : space-between">
+
+				<h6>میانگین امتیاز کالا : <span style="color : red;">{{product.get_average_score}}</span></h6>
+
+				{% if product.get_user_score > 0 %}
+				<div>
+					{% with ''|center:5 as range %}
+					{% for i in range %}
+					{% if forloop.counter <= product.get_user_score %}
+					<span id="star_{{ forloop.counter }}" class="fa fa-star checked"></span>
+					{% else %}
+					<span id="star_{{ forloop.counter }}" class="fa fa-star"></span>
+					{% endif %}
+					{% endfor %}
+					{% endwith %}
+				</div>
+				{% else %}
+				<div>
+					<span id="star_1" class="fa fa-star cursor-pointer" onclick="addScore(1, {{product.id}})"></span>
+					<span id="star_2" class="fa fa-star cursor-pointer" onclick="addScore(2, {{product.id}})"></span>
+					<span id="star_3" class="fa fa-star cursor-pointer" onclick="addScore(3, {{product.id}})"></span>
+					<span id="star_4" class="fa fa-star cursor-pointer" onclick="addScore(4, {{product.id}})"></span>
+					<span id="star_5" class="fa fa-star cursor-pointer" onclick="addScore(5, {{product.id}})"></span>
+				</div>
+				{% endif %}
+
+			</div>
+			<br>
+			<br>
+			<form id="qty" action="#">
+				<input type="qty" class="form-control" id="1" aria-describedby="quantity" placeholder="1">
+				<button class="btn-small info-btn" type="submit" onclick="add_to_shop_cart({{product.id}},1)"><i
+						class="fa fa-shopping-bag"></i><span> افزودن به سبد خرید
+					</span></button>
+
+			</form>
+
+		</div>
+
+	</div>
+
+</div>
 
 {% render_partial 'products:related_product' slug=product.slug %}
 
+<!--comments-->
+<div class="container-comment">
 
+	<div class="tab body_C">
+		<button class="tablinks" onclick="openCity(event, 'Product')"> درباره محصول </button>
+		<button class="tablinks" onclick="openCity(event, 'Comment')" id="defaultOpen"> نظرات </button>
+	</div>
 
+	<div id="Product" class="tabcontent">
+		<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+		<div class="product-tabs">
+			<div class="product_tabs_c">
+				<div class="product-tabs__pane product-tabs__pane--active" id="tab-description">
+					<div class="typography">
+						<h3>توضیحات کامل محصولات</h3>
+						{% autoescape off %}
+						{{product.description}}
+						{% endautoescape %}
 
-{% endblock content %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="Comment" class="tabcontent">
+		<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+		<div class="container">
+			<div class="product-tabs">
+				<div class="product-tabs__list">
+					<a href="#review-form" class="product-tabs__item product-tabs__item--active">دیدگاه ها</a>
+				</div>
+				<div class="product-tabs__content">
+					{% comment %} <div class="product-tabs__pane" id="tab-reviews"> {% endcomment %}
+						<div class="reviews-view" id="btn_{{comment.id}}">
+							<div class="reviews-view__list">
+
+								<h3 class="reviews-view__header">دیدگاه های مشتریان</h3>
+								<div class="reviews-list">
+									<ol class="reviews-list__content">
+										{% for comment in product.comments_product.all %}
+										{% if comment.is_active %}
+										{% if comment.comment_parent == None %}
+										<li class="reviews-list__item"
+											style="display: flex; justify-content: space-between;">
+											<div class="review">
+												<div class="review__vatar">
+													<img class="review__avatar"
+														src="{{media_url}}images/avatars/avatar-2.jpg" alt=""></div>
+												<div class="review__content">
+													<div class="review__author">{{comment.commenting_user.name}}</div>
+													<div class="review__text">
+														{{comment.comment_text}}
+													</div>
+													<div class="review__date">{{comment.register_date}}</div>
+												</div>
+											</div>
+											<div>
+												{% if user.is_authenticated %}
+
+												<div>
+													<a class="btn btn-info" id="btn_{{comment.id}}"
+														onclick="showCreateCommentForm({{product.id}},{{comment.id}},'{{product.slug}}');">
+														پاسخ
+													</a>
+												</div>
+												<div id="comment_form_{{comment.id}}">
+
+													{% comment %} یه فضای خالی برای فرم {% endcomment %}
+												</div>
+												{% endif %}
+											</div>
+										</li>
+
+										{% for item in comment.comments_child.all %}
+										{% if comment.is_active %}
+										<li class="review-list__item"
+											style="background-color: beige; width:95% margin:10px">
+											<div class="review">
+												<div class="review__avatar"><img
+														src="{{media_url}}images/avatars/avatar-4.jpg" alt=""></div>
+												<div class="review__content">
+													<div class="review__author">{{item.commenting_user.name}}</div>
+													<div class="review__text">
+														{{item.comment_text}}
+													</div>
+													<div class="review__date">{{item.register_date}}</div>
+												</div>
+											</div>
+										</li>
+										{% endif %}
+										{% endfor %}
+										{% else %}
+
+										{% endif %}
+										{% endif %}
+										{% endfor %}
+									</ol>
+
+									{% if user.is_authenticated %}
+									<h3 class="reviews-view__header">دیدگاه های خود را بنویسید</h3>
+									<div class="row">
+										<div class="col-12 col-lg-9 col-xl-8">
+											{% render_partial 'csf:create_comment' slug=product.slug %}
+										</div>
+									</div>
+
+									{% else %}
+									<h5>برای درج دیدگاه خود باید
+										<a
+											href="{% url 'accounts:login' %}?next=products/product_details/{{product.slug}}/">ورود</a>
+										با
+										<a
+											href="{% url 'accounts:register' %}?next=products/product_details/{{product.slug}}/">ثبت
+											نام</a>
+										کنید
+									</h5>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--comments-->
+	</div>
+	{% endblock content %}

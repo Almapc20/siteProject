@@ -147,3 +147,131 @@ $('.owl-carousel').owlCarousel({
         }
     }
   })
+//   ======================== Comment =================================================
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+  
+  // Get the element with id="defaultOpen" and click on it
+  document.getElementById("defaultOpen").click();
+
+//   ================== show answer to comment ========================================================
+function showCreateCommentForm(productId, commentId, slug) {
+    $.ajax({
+        type : "GET",
+        url : "/csf/create_comment/" + slug,
+        data : {
+            productId : productId,
+            commentId : commentId,
+        },
+        success : function(res) {
+            $("#btn_"+ commentId).hide();
+            $("#comment_form_"+ commentId).html(res);
+        }
+    });
+}
+    
+// ================== add score stars ========================================================
+function addScore(score, productId) {
+    var starRatings = document.querySelectorAll(".fa-star");    //برو بگرد دنبال همه اونایی که کلاس fa-star دارن
+
+    starRatings.forEach(element => {        
+    element.classList.remove("checked");        //برو همشونو پاک کن یا مشکی کن
+    
+    });
+    for (let i = 1; i <= score; i++) {      //به اندازه ی تعداد اسکور
+        const element = document.getElementById("star_" + i);       //به اونها checked رو بده
+        element.classList.add("checked");
+    }
+
+    $.ajax({
+        type : "GET",
+        url : "/csf/add_score/",
+        data : {
+            productId : productId,
+            score : score
+        },
+        success : function(res) {
+            alert(res);
+        }
+    });
+    starRatings.forEach(element => {
+        element.classList.add("disable");
+    });
+}
+
+// ================== add to favorite ========================================================
+function addToFavorites(productId) {
+    $.ajax({
+        type :"GET",
+        url : "/csf/add_to_favorite/",
+        data : {
+            productId : productId,
+        },
+        success : function(res) { 
+            alert(res);
+            location.reload();
+        }
+    });
+}
+
+//====================status_of_compare_list===============================================
+status_of_compare_list();
+
+//====================status_of_compare_list===============================================
+function status_of_compare_list() {
+    $.ajax({
+        type : "GET",
+        url :  "products/add_to_compare_list/",
+        success : function(res) { 
+            if (Number(res) ===0) {
+                $("#compare_count_icon").hide();
+            } else {
+                $("#compare_count_icon").show();
+                $("#compare_count").text(res);
+            }
+        }
+    });
+}
+
+//====================addCompare===============================================
+function addToCompareList(productId, productGroupId) {
+    $.ajax({
+        type : "GET",
+        url : "products/add_to_compare_list/",
+        data : {
+            productId : productId ,
+            productGroupId : productGroupId
+        },
+        success : function(res) {
+            alert(res);
+            status_of_compare_list();
+        }
+    });
+}
+
+//====================DeleteCompare===============================================
+function deleteFromCompareList(productId) {
+    $.ajax({
+        type : "GET",
+        url : "products/add_to_compare_list/",
+        data : {
+            productId : productId,
+        },
+        success : function(res) {
+            alert("حذف با موفقیت انجام شد")
+            $("#compare_list").html(res);
+            status_of_compare_list();
+        }
+    });
+}

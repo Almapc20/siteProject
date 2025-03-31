@@ -8,6 +8,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from ckeditor.fields import RichTextField
 from datetime import datetime
 from django.db.models import Sum,Avg
+from middlewares.middlewares import RequestMiddleware # from ckeditor.fields import RichTextField   #قابلیت اپبود عکس ندارد 
 
 # ------------------------------------------------------------------------------------------------------------
 class Brand(models.Model):
@@ -94,6 +95,7 @@ class Product(models.Model):
             discount=max(list1)
         return int(self.price-(self.price* discount/ 100))        
         
+#-----------------------------------------------------------------------------------
     # تعداد موجودی کالا در انبار
     def get_number_in_warehouse(self):
         sum1= self.warehouse_products.filter(warehouse_type_id= 1).aggregate(Sum('qty'))
@@ -110,8 +112,37 @@ class Product(models.Model):
         verbose_name= " کالا"
         verbose_name_plural= "کالا ها"
     
+#-----------------------------------------------------------------------------------
+    #میزان امتیازی که کاربر جاری به این کالا داده
+    def get_user_score(self):
+        request= RequestMiddleware(get_response= None)
+        request= request.thread_local.current_request 
+        score= 0 
+        user_score= self.scoring_product.filter(scoring_user= request.user)
+        if user_score.count()> 0:
+            score= user_score[0].score 
+        return score
+            
     
+#--------------------------------------------------------
+    #میانگین امتیازی که این کالا  کسب کرده
+    def get_average_score(self):
+        avgScore = self.scoring_product.all().aggregate(Avg('score'))['score__avg']     #برو میانگین امتیاز رو حساب کن
+        if avgScore==None:      #اگه نتونستی بدست بیاری صفرش کن
+            avgScore=0
+        return avgScore
     
+#--------------------------------------------------------
+    #ایا این کالا مورد علاقه کاربر جاری بوده یا نه 
+    def get_user_favorite(self):
+        request = RequestMiddleware(get_response=None)  #اول ریکویست را پیدا میکنیم
+        request = request.thread_local.current_request
+        
+        flag=self.favorite_product.filter(favorite_user=request.user).exists()      #برو سراغ جدول علاقه مندی ها  و ببین کاربر اون کالای خاص را اضافه کرده یا نه
+        return flag
+
+
+
 #-----------------------------------------------------------------------------------
 class FeatureValue(models.Model):
     value_title= models.CharField(max_length= 100, verbose_name= "عنوان مقدار")

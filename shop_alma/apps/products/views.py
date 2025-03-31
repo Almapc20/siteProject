@@ -57,7 +57,7 @@ def get_related_products(request, *args, **kwargs):
     for group in curent_products.product_group.all() :
         related_products.extend(Product.objects.filter(Q(is_active=True) & (Q(product_group=group)) & ~Q(id= curent_products.id)))
 
-    return render(request, "products_app/partials/related_product.html", {'related_products':related_products})
+    return render(request, "products_app/partials/related_products.html", {'related_products':related_products})
 
 #======================== همه دسته ها =======================================
 class ProductGroupView(View):   

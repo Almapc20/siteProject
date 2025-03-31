@@ -29,6 +29,7 @@ urlpatterns = [
     path('discounts/', include('apps.discounts.urls', namespace= "discounts")),
     path('payments/',include('apps.payment.urls',namespace='payments')),
     path('warehouses/', include("apps.warehouses.urls", namespace= "warehouses")),
+    path("csf/",include("apps.comment_scoring_favorites.urls",namespace='csf')),
     
     
     path('ckeditor/', include('ckeditor_uploader.urls')),

@@ -672,3 +672,273 @@ details[open] summary {
     margin-top: 10px;
 
 }
+
+/* ============== detail page style ============================ */
+/*  info pro*/
+.container-info{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: 20px 0;
+    flex-direction: row-reverse;
+    
+
+
+
+}
+ .contain{
+    width: 85%;
+    border: 1px solid yellow;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align:center;
+  
+
+}
+.left-info{
+    width: 50%;
+    margin-top: 30px;
+}
+
+.right-info{
+    width: 50%;
+    transition: transform 0.3s ease;
+    overflow: hidden; 
+    margin-top: 30px;
+}
+.right-info:hover{
+    transform: scale(0.9);
+
+
+}
+.pic-info{
+    width:80%;
+    margin: 0 auto;
+  
+}
+   
+.info-icon{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    
+}
+.info-icon p{
+    padding: 20px;
+}
+.fa-icon{
+    margin-left:10px;
+}
+.info-btn{
+    margin-top: 40px;
+}
+.info-title p{
+    padding: 10px;
+}
+
+/* end info pro*/
+
+/* Style the tab */
+.container-comment{
+    width: 60%;
+    height: auto;
+    margin:23px  auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 1px solid blue;
+    padding: 20px;
+
+    
+    border-radius: 0px 30px 0px 30px;
+}
+.tab {
+   
+    display: flex;
+    justify-content: center;
+
+    width: 80%;
+   overflow: hidden; 
+  border: 1px solid #ccc;
+   background-color: #f1f1f1; 
+}
+h3 {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+p{
+    font-size: 1rem;
+    font-weight: bold;
+}
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    width: 80%;
+  display: none;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+.texarea-comment{
+    background-color: rgb(240, 238, 238);
+}
+
+/* Style the close button */
+.topright {
+  float: right;
+  cursor: pointer;
+  font-size: 28px;
+}
+
+.topright:hover {color: red;}
+
+/*end copy pro*/
+
+.container-copyproduct{
+    background-color: aqua;
+    width:100%;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    border-radius:20px;
+    margin: 0 auto;
+}
+.pro-grid{
+    padding:10px;
+    margin:20px;
+    background-color: rgb(198, 240, 238);
+    border-radius: 15px;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.product-title{
+    display: flex;
+    justify-content: center;
+}
+.btn-small{
+    border: none;
+     display: inline-block;
+     font-size: 1.2rem;
+     text-align: center;
+     border-radius: 40px;
+     background-color: #D31E3C;
+     color: white;
+     padding:13px 23px;
+     font-weight: bold;
+     text-decoration: none;
+     line-height: 1.5rem;
+     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+ }
+ .pic-thumnail{
+    width: 210px;
+    height: 160px;
+    margin-top: 10px;
+    border: 1px solid rgb(192, 189, 189);
+    border-radius: 50%;
+    
+}
+.price{
+    padding-bottom: 5px;
+}
+/*end copy pro*/
+
+
+
+/* ============== coment ============================ */
+.body_C {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+/* Style the close button */
+.topright {
+  float: right;
+  cursor: pointer;
+  font-size: 28px;
+}
+
+.topright:hover {color: red;}
+
+.view_c{
+    width: 100%;
+    display: flex;
+    align-content: flex-end;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.product_tabs_c {
+    border: 2px solid #f0f0f0;
+    border-radius: 2px;
+    padding: 8px 90px;
+}
+
+.checked {
+	color: orange;
+}
+
+.fa-heart {
+	color: red;
+}
+.cursor-pointer {
+	cursor: pointer;
+}
