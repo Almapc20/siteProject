@@ -11,7 +11,9 @@
         <div class="mega-box">
           <div class="content">
             <div class="row">
-              <img src="https://fadzrinmadu.github.io/hosted-assets/responsive-mega-menu-and-dropdown-menu-using-only-html-and-css/img.jpg" alt="">
+              <img
+                src="https://fadzrinmadu.github.io/hosted-assets/responsive-mega-menu-and-dropdown-menu-using-only-html-and-css/img.jpg"
+                alt="">
             </div>
             <div class="row">
               <header> طراحی سایت </header>
@@ -54,9 +56,8 @@
       </li>
       <li><a href="#"> درباره ما </a></li>
       <li><a href="#"> ارتباط با ما </a></li>
-      
-    </ul>
 
+    </ul>
 
     <div class="wrapper">
       <ul class="nav-links">
@@ -66,8 +67,8 @@
           <label for="showDrop" class="mobile-item"> حساب کاربری</label>
           <ul class="drop-menu">
             {% if user.is_authenticated %}
-              <li><a href='{% url "accounts:userpanel" %}'> پنل کاربری </a></li>
-              <li><a href='{% url "accounts:logout" %}'> خروج </a></li>
+            <li><a href='{% url "accounts:userpanel" %}'> پنل کاربری </a></li>
+            <li><a href='{% url "accounts:logout" %}'> خروج </a></li>
             {% else %}
 
             <li><a href="{% url 'accounts:login' %}">ورود</a></li>
@@ -76,68 +77,31 @@
           </ul>
         </li>
       </ul>
-        <!--***** Logo Start ***** -->
-        <a href="index.html" class="logo">
-          <img src="{{media_url}}/images/logo.png" alt="" style="width: 158px ">
+      <!--***** Logo Start ***** -->
+      <a href="index.html" class="logo">
+        <img src="{{media_url}}/images/logo.png" alt="" style="width: 158px ">
       </a>
-  <!-- ***** Logo End ***** -->
+      <!-- ***** Logo End ***** -->
 
-    <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
-  </div>
+      <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+    </div>
+    <div style="display:flex; flex_direction:row;">
+      <div class="indicator">
+        <a href='{% url "orders:shop_cart" %}'>
+          <span>
+            <i class="fa fa-shopping-basket basket" aria-hidden="true"></i>
+          </span>
+          <span class="indicator__value" id="indicator__value">0</span>
+        </a>
+      </div>
+      <div  id="compare_count_icon" class="indicator">
+        <a href='{% url "products:compare_table" %}'>
+          <span>
+            <i class="fa fa-play basket" aria-hidden="true"></i>
+          </span>
+          <span class="indicator__value" id="compare_count">0</span>
+        </a>
+      </div>
+    </div>
 
-  <div class="indicator">
-    <a href='{% url "orders:shop_cart" %}'>
-    <span>
-      <i class="fa fa-shopping-basket basket" aria-hidden="true"></i>
-    </span>
-    <span class="indicator__value" id="indicator__value">0</span>
-    </a>
-  </div>
 </nav>
-
-
-<!-- partial -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ***** Menu Start ***** -->
- <!-- <ul class="nav">
-   <li><a href="{% url 'accounts:login' %}">ورود</a></li>
-   <li><a href="contact.html" class="active">صفحه اصلی</a></li>
-   <li><a href="product-details.html">فروشگاه</a></li>
-   <li><a href="shop.html">درباره ما</a></li>
-   <li><a href="index.html" >ارتباط با ما</a></li>
- </ul>
- <a class='menu-trigger'>
-     <span>Menu</span>
- </a> -->
- <!-- ***** Menu End ***** -->

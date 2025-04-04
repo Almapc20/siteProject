@@ -1,10 +1,14 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Product, ProductGroup, FeatureValue, Brand
-from django.db.models import Q, Count, Min, Max
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Product,ProductGroup,FeatureValue,Brand
+from django.db.models import Q,Count,Min,Max
 from django.views import View
 from django.http import JsonResponse
-from .filters import ProductFilter
+from django.http import HttpResponse
+import django_filters
+from .filters import ProductFilter 
 from django.core.paginator import Paginator
+from .compare import CompareProduct
+
 
 
 def get_root_group():
@@ -165,7 +169,7 @@ def get_feautres_for_filter(request, *args, **kwargs):
     
     return render(request, 'products_app/partials/features_filter.html', {'feature_dict':feature_dict})
 
-# =================================================================================================================
+# ========================  =========================================================================================
 class ProductAllView(View):   
     def get(self, request):
         product_all= Product.objects.filter(Q(is_active=True))\
@@ -173,9 +177,67 @@ class ProductAllView(View):
                         .order_by('-count')
         return render(request, "products_app/shop.html/", {'product_all':product_all})
 
-# =====================================================================================================================
+# ======================== نمایش کالاهای اضافه شده به لیست مقایسه =============================================================================================
+class ShowCompareListView(View):
+    def get(self,request,*args,**kwargs):
+        compare_list = CompareProduct(request)
+        context={
+            "compare_list" : compare_list,
+            }
+        return render(request, "products_app/compare_list.html", context)
 
+# #======================= نمایش جدول کالاهای لیست مقایسه ==============================================
+def compare_table(request):
+    compareList= CompareProduct(request)
+    
+    
+    products=[]
+    for productId in compareList.compare_product:
+        product=Product.objects.get(id=productId)
+        products.append(product) 
 
+    features=[]
+    for product in products:
+        for item in product.product_features.all():
+            if item.feature not in features:
+                features.append(item.feature)
+
+    print(100*'*')
+    print('products : ', products)
+    print('features : ', features)
+
+    print(100*'*')
+
+    context= {
+        'products' : products,
+        'features' : features
+    }
+    return render(request, "products_app/partials/compare_table.html", context)
+
+# #======================= محاسبه تعداد کالاهای موجود در لیست مقایسه ==============================================
+def status_of_compare_list(request):
+    compareList= CompareProduct(request)
+    print(100*'*')
+    print(compareList.count)
+    print(100*'*')
+    return HttpResponse(compareList.count)
+
+# #======================= اضافه ردن  کالا به لیست مقایسه ==============================================
+def add_to_compare_list(request):
+    productId=request.GET.get('productId')
+    # productGroupId=request.GET.get('productGroupId')
+    compareList=CompareProduct(request)
+    compareList.add_to_compare_product(productId)
+    return HttpResponse("کالا به لیست مقایسه اضافه شد")
+
+# #======================= حذف کالا از لیست  ==============================================
+def delete_from_compare_list(request):
+    productId=request.GET.get("productId")
+    compareList=CompareProduct(request)
+    compareList.delete_from_compare_product(productId)
+    return redirect("products:compare_table")
+
+9
 
 
 

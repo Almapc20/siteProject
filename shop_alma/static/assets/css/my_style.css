@@ -602,11 +602,19 @@ details[open] summary {
     background-color: #3b3b3b;
 }
 
+.icons_search{
+    display: flex;
+    flex-direction: row;
+}
 /* =============================== order page stule =============================================== */
 .basket {
-    font-size: 3rem;
+    font-size: 2rem;
 }
 
+.search{
+    font-size: 2rem;
+    color:#ee4156;
+}
 /* ============================== shop_body ======================================================= */
 .shop_body {
     margin-top: 0px !important;
@@ -941,4 +949,45 @@ p{
 }
 .cursor-pointer {
 	cursor: pointer;
+}
+
+/* ============= compare buttom ================ */
+.info_com{
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-between;
+    width: 90%;
+    padding-right: 70px;
+
+}
+
+.compare{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.info_ul{
+    width : 100%; 
+    display : flex; 
+    justify-content : space-between; 
+    padding: 0;
+    padding-bottom: 20px;
+}
+
+.buy_button{
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+    align-items: baseline;
+    width: 90%;
+    padding-right: 70px;
+}
+
+.form-quantity{
+    width: 100px;
+    border: 1px solid rgb(255, 83, 83);
+    border-radius: 10px;
+    text-align: center;
 }

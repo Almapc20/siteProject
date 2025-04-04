@@ -63,51 +63,74 @@
 				<i class="fa fa-money fa-icon"></i>
 				<p>با خرید دو عدد فلش بن تخفیف 50.000 تومانی هدیه بگیرید</p>
 			</div>
+			<div class="info_com">
+				<ul class="info_ul">
+					<li style="list-style: none;">برند : <a href=""><span
+								style="color : red;">{{product.brand}}</span></a>
+					</li>
+					<li style="list-style: none; ">تعداد نظرات : <a href=""><span
+								style="color : red;">{{product.comments_product.all|length}}</span></a> نظر</li>
 
-			<ul class="product__meta"
-				style="width : 100%; display : flex; justify-content : space-between; padding: 0;">
-				<li style="list-style: none;">برند : <a href=""><span style="color : red;">{{product.brand}}</span></a>
-				</li>
-				<li style="list-style: none; ">تعداد نظرات : <a href=""><span
-							style="color : red;">{{product.comments_product.all|length}}</span></a> نظر</li>
+				</ul>
 
-			</ul>
+				<div class="" style="display: flex; justify-content : space-between">
 
-			<div style="display: flex; justify-content : space-between">
+					<h6>میانگین امتیاز کالا : <span style="color : red;">{{product.get_average_score}}</span></h6>
 
-				<h6>میانگین امتیاز کالا : <span style="color : red;">{{product.get_average_score}}</span></h6>
-
-				{% if product.get_user_score > 0 %}
-				<div>
-					{% with ''|center:5 as range %}
-					{% for i in range %}
-					{% if forloop.counter <= product.get_user_score %}
-					<span id="star_{{ forloop.counter }}" class="fa fa-star checked"></span>
+					{% if product.get_user_score > 0 %}
+					<div>
+						{% with ''|center:5 as range %}
+						{% for i in range %}
+						{% if forloop.counter <= product.get_user_score %}
+						<span id="star_{{ forloop.counter }}" class="fa fa-star checked"></span>
+						{% else %}
+						<span id="star_{{ forloop.counter }}" class="fa fa-star"></span>
+						{% endif %}
+						{% endfor %}
+						{% endwith %}
+					</div>
 					{% else %}
-					<span id="star_{{ forloop.counter }}" class="fa fa-star"></span>
+					<div>
+						<span id="star_1" class="fa fa-star cursor-pointer"
+							onclick="addScore(1, {{product.id}})"></span>
+						<span id="star_2" class="fa fa-star cursor-pointer"
+							onclick="addScore(2, {{product.id}})"></span>
+						<span id="star_3" class="fa fa-star cursor-pointer"
+							onclick="addScore(3, {{product.id}})"></span>
+						<span id="star_4" class="fa fa-star cursor-pointer"
+							onclick="addScore(4, {{product.id}})"></span>
+						<span id="star_5" class="fa fa-star cursor-pointer"
+							onclick="addScore(5, {{product.id}})"></span>
+					</div>
 					{% endif %}
-					{% endfor %}
-					{% endwith %}
 				</div>
-				{% else %}
-				<div>
-					<span id="star_1" class="fa fa-star cursor-pointer" onclick="addScore(1, {{product.id}})"></span>
-					<span id="star_2" class="fa fa-star cursor-pointer" onclick="addScore(2, {{product.id}})"></span>
-					<span id="star_3" class="fa fa-star cursor-pointer" onclick="addScore(3, {{product.id}})"></span>
-					<span id="star_4" class="fa fa-star cursor-pointer" onclick="addScore(4, {{product.id}})"></span>
-					<span id="star_5" class="fa fa-star cursor-pointer" onclick="addScore(5, {{product.id}})"></span>
+				<div class='compare'>
+					<span> اضافه کردن کالا برای مقایسه </span>
+					<div>
+						<button onclick="addToCompareList({{product.id}},{{product.getMainProductGroup}})" style="cursor:pointer;">
+							<div style="margin : 10px; padding: 5px; border: 2px solid #f1f1f1; width: 45px; height: 45; border-radius">
+								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+									stroke-width="1.5" stroke="currentColor" class="size-6">
+									<path stroke-linecap="round" stroke-linejoin="round"
+										d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+								</svg>
+							</div>
+						</button>
+					</div>
 				</div>
-				{% endif %}
-
 			</div>
-			<br>
-			<br>
-			<form id="qty" action="#">
-				<input type="qty" class="form-control" id="1" aria-describedby="quantity" placeholder="1">
-				<button class="btn-small info-btn" type="submit" onclick="add_to_shop_cart({{product.id}},1)"><i
-						class="fa fa-shopping-bag"></i><span> افزودن به سبد خرید
-					</span></button>
 
+			<form id="qty" action="#">
+				<div class="buy_button">
+					<div>
+						<button class="btn-small info-btn" type="submit" onclick="add_to_shop_cart({{product.id}},1)">
+							<i class="fa fa-shopping-bag"></i>
+							<span> افزودن به سبد خرید</span></button>
+					</div>
+					<div>
+						<input type="qty" class="form-quantity" id="1" aria-describedby="quantity" placeholder="1">
+					</div>
+				</div>
 			</form>
 
 		</div>

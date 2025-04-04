@@ -30,6 +30,7 @@ urlpatterns = [
     path('payments/',include('apps.payment.urls',namespace='payments')),
     path('warehouses/', include("apps.warehouses.urls", namespace= "warehouses")),
     path("csf/",include("apps.comment_scoring_favorites.urls",namespace='csf')),
+    path("search/",include("apps.search.urls",namespace='search')),
     
     
     path('ckeditor/', include('ckeditor_uploader.urls')),

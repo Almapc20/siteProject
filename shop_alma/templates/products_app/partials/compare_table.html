@@ -1,0 +1,51 @@
+{% extends 'main_template.html' %}
+
+
+{% block title %}
+	کامپیوتر آلما
+{% endblock title %}
+    
+
+{% block content %}
+
+{% include "partials/banner/banner_box.html" with type=2 %}
+
+   {% if products %}
+    <div class="container">
+        <h2 style="text-align: center; color: green;">کالاهای انتخابی برای مقایسه</h2>
+        <table class="table table-bordered">
+            <tr style="background: #f1f1f1; text-align:center;">
+                <th>ویژگی کالا / کالا</th>
+                {% for product in products %}
+                <th>
+                    <i class="fa fa-remove product-remove" onclick="deleteFromCompareList({{ product.id }})"></i>
+                    {{ product.product_name }}
+                </th>
+                {% endfor %}
+            </tr>
+
+            {% for feature in features %}
+                <tr>
+                    <td style="font-size: 1.2rem; font-weight: 900; width: 25%;">{{ feature }}</td> <!-- فرض بر این است که feature دارای نام است -->
+                    {% for product in products %}
+                    <td style="text-align: center;">
+                        {% for item in product.product_features.all %}
+                            {% if item.feature == feature %}
+                                <span style="margin: 5px"> {{ item.value }} </span>
+                                {% comment %} <span style="margin: 5px"> {{ item.filter_value.value_title }} </span> {% endcomment %}
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}            
+        </table>
+    </div>
+{% else %}
+    <div class="container">
+        <h2 style="text-align: center; color: green; padding: 100px;">کالایی برای مقایسه وجود ندارد</h2>
+    </div>
+{% endif %}
+
+
+{% endblock content %}

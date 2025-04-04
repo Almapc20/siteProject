@@ -228,18 +228,18 @@ function addToFavorites(productId) {
 //====================status_of_compare_list===============================================
 status_of_compare_list();
 
-//====================status_of_compare_list===============================================
 function status_of_compare_list() {
     $.ajax({
         type : "GET",
-        url :  "products/add_to_compare_list/",
+        url :  "/products/status_of_compare_list/",
         success : function(res) { 
-            if (Number(res) ===0) {
-                $("#compare_count_icon").hide();
-            } else {
-                $("#compare_count_icon").show();
-                $("#compare_count").text(res);
-            }
+            $("#compare_count").text(res);
+            // if (Number(res) === 0) {
+            //     $("#compare_count_icon").hide();
+            // } else {
+            //     $("#compare_count_icon").show();
+            //     $("#compare_count").text(res);
+            // }
         }
     });
 }
@@ -248,7 +248,7 @@ function status_of_compare_list() {
 function addToCompareList(productId, productGroupId) {
     $.ajax({
         type : "GET",
-        url : "products/add_to_compare_list/",
+        url : "/products/add_to_compare_list/",
         data : {
             productId : productId ,
             productGroupId : productGroupId
@@ -264,7 +264,7 @@ function addToCompareList(productId, productGroupId) {
 function deleteFromCompareList(productId) {
     $.ajax({
         type : "GET",
-        url : "products/add_to_compare_list/",
+        url : "/products/delete_from_compare_list/",
         data : {
             productId : productId,
         },

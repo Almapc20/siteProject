@@ -107,11 +107,7 @@ class Product(models.Model):
         if sum2['qty__sum']!= None:
             output= sum2['qty__sum']
         return input- output
-    
-    class Meta:
-        verbose_name= " کالا"
-        verbose_name_plural= "کالا ها"
-    
+ 
 #-----------------------------------------------------------------------------------
     #میزان امتیازی که کاربر جاری به این کالا داده
     def get_user_score(self):
@@ -141,8 +137,17 @@ class Product(models.Model):
         flag=self.favorite_product.filter(favorite_user=request.user).exists()      #برو سراغ جدول علاقه مندی ها  و ببین کاربر اون کالای خاص را اضافه کرده یا نه
         return flag
 
+#--------------------------------------------------------
+    #تابعی برای برگرداندن گروه اصلی کالا
+    def getMainProductGroup(self):
+        return self.product_group.all()[0].id   #همه ی گروه هارو  پیدا کن صفرمین گروه ایدیش را برگردان
 
 
+   
+    class Meta:
+        verbose_name= " کالا"
+        verbose_name_plural= "کالا ها"
+    
 #-----------------------------------------------------------------------------------
 class FeatureValue(models.Model):
     value_title= models.CharField(max_length= 100, verbose_name= "عنوان مقدار")

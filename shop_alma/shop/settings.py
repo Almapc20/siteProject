@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'apps.payment.apps.PaymentConfig',
     'apps.warehouses.apps.WarehousesConfig',
     'apps.comment_scoring_favorites.apps.CommentScoringFavoritesConfig',
+    'apps.search.apps.SearchConfig',
     
     #====== ckeditor ================
     'ckeditor',
