@@ -108,3 +108,42 @@ class RememberPasswordForm(forms.Form):
                                 )
      
 #--------------------------------------------------------------------------------------
+
+class UpdateProfileForm(forms.Form):
+    mobile_number = forms.CharField(
+        label='شماره موبایل',
+        error_messages={'required': ' این فیلد نمی تواند خالی باشد. '},
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': ' شماره موبایل را وارد کنید', 'readonly': 'readonly'})
+    )
+
+    name = forms.CharField(
+        label=' اسم',
+        error_messages={'required': ' این فیلد نمی تواند خالی باشد. '},
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': ' اسم را وارد کنید '})
+    )
+
+    family = forms.CharField(
+        label='نام خانوادگی ',
+        error_messages={'required': ' این فیلد نمی تواند خالی باشد. '},
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': ' نام خانوادگی را وارد کنید '})
+    )
+
+    email = forms.EmailField(
+        label=' ایمیل',
+        error_messages={'required': ' این فیلد نمی تواند خالی باشد. '},
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': ' ایمیل را وارد کنید '})
+    )
+
+    phone_number = forms.CharField(
+        label='شماره تلفن',
+        error_messages={'required': ' این فیلد نمی تواند خالی باشد. '},
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': ' شماره تلفن را وارد کنید '})
+    )
+
+    address = forms.CharField(
+        label='آدرس ',
+        error_messages={'required': ' این فیلد نمی تواند خالی باشد. '},
+        widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': ' آدرس را وارد کنید '})
+    )
+
+    image = forms.ImageField(required=False)

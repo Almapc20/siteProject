@@ -15,6 +15,16 @@ class PaymentType(models.Model):
         verbose_name= 'نوع پرداخت'
         verbose_name_plural= 'انواع روش پرداخت'
 # #--------------------------------------------------------------------------------------------------------------------------------
+class OrderState(models.Model):
+    order_state_title=models.CharField(max_length=50,verbose_name='عنوان وضعیت سفارش')
+    
+    def __str__(self):
+        return self.order_state_title
+    
+    class Meta:
+        verbose_name = 'وضعیت سفارش'
+        verbose_name_plural = 'انواع وضعیتهای سفارش'
+#--------------------------------------------------------------------------------------------------------------------------------
 class Order(models.Model):
     customer= models.ForeignKey(Customer, on_delete= models.CASCADE, related_name='orders', verbose_name='مشتری')  # فیلد جدید
     register_date= models.DateField(default= timezone.now, verbose_name= "تاریخ درج مقاله")
@@ -25,7 +35,7 @@ class Order(models.Model):
     # discount= models.IntegerField(blank= True, null= True, default= None, verbose_name= "تخفیف روی فاکتور")
     description= models.TextField(blank= True, null= True, verbose_name= 'توضیحات')
     payment_type= models.ForeignKey(PaymentType, default= None, on_delete= models.CASCADE, null= True, blank= True, related_name= 'payment_types', verbose_name= 'نوع پرداخت')    
-    
+    order_state=models.ForeignKey(OrderState,on_delete=models.CASCADE,verbose_name='وضعیت سفارش',related_name='orders_states',null=True,blank=True)
     
     # def get_order_total_price(self):
     #     sum=0 

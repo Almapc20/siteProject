@@ -12,7 +12,7 @@
 from django.shortcuts import render,redirect
 from django .views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
-from apps.orders.models import Order
+from apps.orders.models import Order,OrderState
 import requests
 import json
 from django.core.exceptions import ObjectDoesNotExist
@@ -149,6 +149,7 @@ class SpotPaymentVerifyView(LoginRequiredMixin,View):
 
                 order=Order.objects.get(id= order_id)
                 order.is_finaly= True
+                order.order_state=OrderState.objects.get(id=1)
                 order.save()
                 payment.is_finaly= True
                 payment.save()    

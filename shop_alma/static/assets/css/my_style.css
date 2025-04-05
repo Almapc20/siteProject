@@ -609,6 +609,7 @@ details[open] summary {
 /* =============================== order page stule =============================================== */
 .basket {
     font-size: 2rem;
+    padding: 8px;
 }
 
 .search{
