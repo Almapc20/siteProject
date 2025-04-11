@@ -141,6 +141,14 @@
     margin-bottom: 10px;
     padding: 45px;
 }
+.main-banner4 {
+    margin-bottom: 10px;
+    padding: 80px;
+}
+
+.top-panle{
+margin-top:80px ;
+}
 
 .header-text1 {
     margin-top: -60px;
@@ -610,6 +618,11 @@ details[open] summary {
 .basket {
     font-size: 2rem;
     padding: 8px;
+}
+.user-panel {
+    font-size: 2rem;
+    padding: 8px;
+    color:#ee4156;
 }
 
 .search{

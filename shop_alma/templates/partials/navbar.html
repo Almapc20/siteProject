@@ -94,17 +94,7 @@
           <span class="indicator__value" id="indicator__value">0</span>
         </a>
       </div>
-      <div class="indicator">
-        <a href='{% url "orders:shop_cart" %}'>
-          <span>
-                {% if user.is_authenticated %}
-
-                        <a href="{% url 'accounts:userpanel' %}" class="topbar-link"> <i class="fa fa-user basket"></i></a>
-                    {% endif %}
-          </span>
-          <span class="indicator__value" id="indicator__value">0</span>
-        </a>
-      </div>
+      
       <div  id="compare_count_icon" class="indicator">
         <a href='{% url "products:compare_table" %}'>
           <span>
@@ -114,6 +104,16 @@
         </a>
         
       </div>
+      
+      {% if user.is_authenticated %}
+      <div class="indicator">
+          <span>
+                <a href="{% url 'accounts:userpanel' %}" class="topbar-link"> <i class="fa fa-user user-panel"></i></a>
+          </span>
+      </div>
+      {% endif %}
+
+
     </div>
 
 </nav>

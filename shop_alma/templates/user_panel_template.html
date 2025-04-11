@@ -1,109 +1,98 @@
 {% load static %}
+{% load humanize %}
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
-    <meta charset="utf-8">   
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        {% block title %}{% endblock %}
-    </title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>
+		{% block title %}{% endblock %}
+	</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+	{% comment %}
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+		rel="stylesheet"> {% endcomment %}
 
-    <!-- Bootstrap core CSS -->
+	<!-- Bootstrap core CSS -->
 	<link rel="stylesheet" href='{% static "/vendor/bootstrap/css/bootstrap.min.css" %}'>
-    
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href='{% static "/assets/css/fontawesome.css" %}'>
-	  <link rel="stylesheet" href='{% static "/assets/css/templatemo-lugx-gaming.css" %}'>
-    <link rel="stylesheet" href='{% static "/assets/css/owl.css" %}'>
-    <link rel="stylesheet" href='{% static "/assets/css/animate.css" %}'>
-    <link rel="stylesheet" href='{% static "/assets/css/my_style.css" %}'>
-    <link rel="stylesheet" href='{% static "/assets/css/login.css" %}'>
-    <link rel="stylesheet" href='{% static "/assets/css/util.css" %}'>
-    <link rel="stylesheet" href='{% static "/assets/css/style.css" %}'>
-    <link rel="stylesheet" href='{% static "/assets/css/owl.theme.css" %}'>
-    <link rel="stylesheet" href='{% static "/assets/css/owl.carousel.min.css" %}'>
 
-    
-    <!-- Scripts -->
-    <!-- Bootstrap core JavaScript -->
-    <script src='{% static "/vendor/jquery/jquery.min.js" %}'></script>
-    <script src='{% static "/vendor/bootstrap/js/bootstrap.min.js" %}'></script>
-    <script src='{% static "/assets/js/isotope.min.js" %}'></script>
-    <script src='{% static "/assets/js/owl-carousel.js" %}'></script>
-    <script src='{% static "/assets/js/counter.js" %}'></script>
-    <script src='{% static "/assets/js/custom.js" %}'></script>
-    <script src='{% static "/assets/js/myscript.js" %}'></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src='{% static "/assets/js/owl.carousel.js" %}'></script>
+	<!-- Additional CSS Files -->
+	<link rel="stylesheet" href='{% static "/assets/css/fontawesome.css" %}'>
+	<link rel="stylesheet" href='{% static "/assets/css/templatemo-lugx-gaming.css" %}'>
+	<link rel="stylesheet" href='{% static "/assets/css/owl.css" %}'>
+	<link rel="stylesheet" href='{% static "/assets/css/animate.css" %}'>
+	<link rel="stylesheet" href='{% static "/assets/css/my_style.css" %}'>
+	<link rel="stylesheet" href='{% static "/assets/css/login.css" %}'>
+	<link rel="stylesheet" href='{% static "/assets/css/util.css" %}'>
+	<link rel="stylesheet" href='{% static "/assets/css/style.css" %}'>
+	<link rel="stylesheet" href='{% static "/assets/css/owl.theme.css" %}'>
+	<link rel="stylesheet" href='{% static "/assets/css/owl.carousel.min.css" %}'>
 
+	<!-- Scripts -->
+	<!-- Bootstrap core JavaScript -->
+	<script src='{% static "/vendor/jquery/jquery.min.js" %}'></script>
+	<script src='{% static "/vendor/bootstrap/js/bootstrap.min.js" %}'></script>
+	<script src='{% static "/assets/js/isotope.min.js" %}'></script>
+	<script src='{% static "/assets/js/owl-carousel.js" %}'></script>
+	<script src='{% static "/assets/js/counter.js" %}'></script>
+	<script src='{% static "/assets/js/custom.js" %}'></script>
+	<script src='{% static "/assets/js/myscript.js" %}'></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src='{% static "/assets/js/owl.carousel.js" %}'></script>
 
-
-  <!--
+	<!--
   TemplateMo 589 lugx gaming
   https://templatemo.com/tm-589-lugx-gaming
   -->
 </head>
-<body>
-    
-    {% include "partials/user_panel_header.html" %}
-    {% include "partials/navbar.html" %}
-    {% include "partials/messages.html" %}
 
-    		<!-- site__body -->
-		<div class="site__body">
-			<div class="page-header">
-				<div class="page-header__container container">
-					<div class="page-header__breadcrumb">
-						<nav aria-label="breadcrumb">
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="../index.html">خانه</a>
-									/
-								</li>
-								<li class="breadcrumb-item"><a href="">داشبورد</a>
-									
-								</li>
-								
-							</ol>
-						</nav>
+<body>
+
+	{% comment %} {% include "partials/user_panel_header.html" %} {% endcomment %}
+
+	<!-- site__body -->
+	<div>
+		{% include "partials/navbar.html" %}
+		<div>
+			{% include "partials/banner/banner_box.html" with type=4 %}
+		</div> 
+
+		<div class="block">
+			<div class="container">
+				<div class="row">
+					<div class="d-flex">
+					<div class="col-12 col-lg-3 ">
+						<div class="account-nav" style="border: 1px solid red;">
+							<h4 class="account-nav__title">ناوبری</h4>
+							<ul>
+								<li class="account-nav__item account-nav__item--active"><a
+										href="{% url 'accounts:userpanel' %}">داشبورد</a></li>
+								<li class="account-nav__item"><a href="{% url 'accounts:update_profile' %}">ویرایش
+										پروفایل</a></li>
+								<li class="account-nav__item"><a href="{% url 'accounts:show_user_payment' %}">سابقه
+										خرید</a></li>
+								<li class="account-nav__item"><a href="{% url 'accounts:change_password' %}">تغییر رمز
+										عبور</a></li>
+								<li class="account-nav__item"><a href="{% url 'accounts:logout' %}">خروج</a></li>
+							</ul>
+						</div>
 					</div>
-					<div class="page-header__title">
-						<h1>حساب کاربری</h1></div>
+					<div class="col-12 col-lg-9 mt-4 mt-lg-0">
+						{% block content %}
 						
-				</div>
-			</div>
-			<div class="block">
-				<div class="container">
-					<div class="row">
-						<div class="col-12 col-lg-3 d-flex">
-    						<div class="account-nav" style="border: 1px solid red;">
-        						<h4 class="account-nav__title">ناوبری</h4>
-								<ul>
-									<li class="account-nav__item account-nav__item--active"><a href="{% url 'accounts:userpanel' %}">داشبورد</a></li>
-									<li class="account-nav__item"><a href="{% url 'accounts:update_profile' %}">ویرایش پروفایل</a></li>
-									<li class="account-nav__item"><a href="{% url 'accounts:show_user_payment' %}">سابقه خرید</a></li>
-									<li class="account-nav__item"><a href="{% url 'accounts:changepassword' %}">تغییر رمز عبور</a></li>
-									<li class="account-nav__item"><a href="{% url 'accounts:logout' %}">خروج</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-12 col-lg-9 mt-4 mt-lg-0">
-                             {% block content %}
-								{% include "accounts_app/update_profile.html" %}
-                              {% endblock content %}
-						</div>
+						{% endblock content %}
+					</div>
 					</div>
 				</div>
 			</div>
 		</div>
+
 		<!-- site__body / end -->
+	</div>
 
-
-
-   
-    {% comment %} {% include "partials/footer.html" %} {% endcomment %}
-
+	{% include "partials/footer.html" %}
 
 </body>
+
 </html>

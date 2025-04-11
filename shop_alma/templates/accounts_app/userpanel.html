@@ -1,11 +1,11 @@
-{% extends 'main_template.html' %}
+{% extends 'user_panel_template.html' %}
 {% load render_partial %}
 {% block title %}
 پنل کاربری
 {% endblock title %}
 
 {% block content %}
-{% include "partials/banner/banner_box.html" with type=2 %}
+{% comment %} {% include "partials/banner/banner_box.html" with type=4 %} {% endcomment %}
 <div class="limiter">
         <div class="dashboard">
             {% include "accounts_app/partials/user_info.html" %}

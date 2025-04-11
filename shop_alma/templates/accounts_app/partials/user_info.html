@@ -4,11 +4,11 @@
                                         {% if user_info.image_name %}
 										<div class="profile-card__avatar"><img src="{{media_url}}{{user_info.image_name}}" alt="ax"></div>
                                         {% else %}
-                                        <div class="profile-card__avatar"><img src="{{media_url}}image/customer/nophotom.png" alt="ax"></div>
+                                        <div class="profile-card__avatar"><img src="{{media_url}}images/customer/nophotom.png" alt="ax"></div>
                                         {% endif %}
 										<div class="profile-card__name"> {{user_info.name}}  {{user_info.family}}</div>
 										<div class="profile-card__email"> {{user_info.email}} </div>
-										<div class="profile-card__edit"><a href="#" class="btn btn-secondary btn-sm">ویرایش پروفایل</a></div>
+										<div class="profile-card__edit"><a href="{% url 'accounts:update_profile' %}" class="btn btn-secondary btn-sm">ویرایش پروفایل</a></div>
 									</div>
 								</div>
 								<div class="dashboard__address card address-card address-card--featured">
