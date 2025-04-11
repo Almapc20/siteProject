@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اسلایدر با Owl Carousel</title>
+    <!-- اضافه کردن CSS مربوط به Owl Carousel -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <style>
+        .block-slideshow__slide-image {
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            height: 380px; /* می‌توانید ارتفاع را تنظیم کنید */
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="block-slideshow block-slideshow-layout--full block">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="block-slideshow__body">
+                        <div class="owl-carousel">
+                            {% for slide in sliders %}
+                                <a class="block-slider__slide" href="{{ slide.slider_link }}">
+                                    <div class="block-slideshow__slide-image" style="background-image: url('{{ slide.image_name.url }}');"></div>
+
+                                        {% if slide.slider_title1 %}
+                                            {{ slide.slider_title1 }}
+                                        {% endif %}
+                                    </div>
+                                    {% comment %} <div class="block-slideshow__text">
+                                        {% if slide.slider_title2 %}
+                                            {{ slide.slider_title2 }}
+                                        {% endif %}
+                                        <br />
+                                        {% if slide.slider_title3 %}
+                                            {{ slide.slider_title3 }}
+                                        {% endif %}
+                                    </div> {% endcomment %}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- اضافه کردن JS مربوط به Owl Carousel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".owl-carousel").owlCarousel({
+                items: 1,
+                loop: true,
+                autoplay: true,
+                autoplayTimeout: 3000, // مدت زمان تغییر اسلاید به میلی‌ثانیه
+                dots: true
+            });
+        });
+    </script>
+</body>
+</html>

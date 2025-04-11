@@ -36,3 +36,5 @@ urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404='apps.main.views.handler404'
